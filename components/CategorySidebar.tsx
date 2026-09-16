@@ -12,11 +12,11 @@ export function CategorySidebar({
   onSelect: (id: CategoryId) => void;
 }) {
   return (
-    <aside className="lg:sticky lg:top-[92px] lg:h-[calc(100vh-110px)] lg:overflow-y-auto">
-      <p className="mb-3 hidden text-sm font-semibold text-brand-purple lg:block">
+    <aside className="lg:sticky lg:top-[96px] lg:max-h-[calc(100vh-120px)] lg:overflow-y-auto">
+      <p className="mb-3 hidden text-[13px] font-semibold text-brand-purple lg:block">
         همه دسته بندی ها در یک نگاه
       </p>
-      <div className="category-rail flex gap-3 overflow-x-auto pb-2 lg:flex-col lg:overflow-visible">
+      <div className="category-rail flex gap-2 overflow-x-auto pb-2 lg:flex-col lg:overflow-visible lg:gap-3">
         {categories.map((cat) => {
           const isActive = active === cat.id;
           return (
@@ -24,23 +24,14 @@ export function CategorySidebar({
               key={cat.id}
               type="button"
               onClick={() => onSelect(cat.id)}
-              className={`flex min-w-[92px] flex-col items-center rounded-[22px] px-2 py-3 transition lg:min-w-0 ${
-                isActive
-                  ? "bg-brand-purple text-white shadow-card ring-2 ring-brand-green"
-                  : "bg-[#6d3a9c] text-white hover:bg-brand-purple"
+              className={`relative flex min-w-[96px] flex-col items-center rounded-[22px] bg-brand-purple px-2 py-3 text-white transition lg:min-w-0 lg:h-[120px] ${
+                isActive ? "ring-2 ring-brand-green" : "opacity-95 hover:opacity-100"
               }`}
             >
-              <span className="relative mb-2 h-16 w-16 overflow-hidden rounded-full bg-white">
-                <Image
-                  src={cat.image}
-                  alt={cat.label}
-                  fill
-                  sizes="64px"
-                  unoptimized
-                  className="object-cover"
-                />
+              <span className="relative mb-2 h-[52px] w-[52px] overflow-hidden rounded-full bg-white shadow-sm lg:h-[56px] lg:w-[56px]">
+                <Image src={cat.image} alt={cat.label} fill sizes="56px" unoptimized className="object-cover" />
               </span>
-              <span className="px-1 text-center text-[11px] font-medium leading-4">
+              <span className="relative px-1 text-center text-[11px] font-medium leading-4 text-white">
                 {cat.label}
               </span>
             </button>

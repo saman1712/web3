@@ -18,49 +18,49 @@ export const categories: Category[] = [
     id: "italian",
     label: "پیتزا ایتالیایی",
     image:
-      "https://sib360.com/Content/images/4372/Platform7Menu/251965/pizza-italian.jpg",
+      "https://sib360.com/Content/images/4372/shortcutTab/289951/%D9%BE%DB%8C%D8%AA%D8%B2%D8%A7%20%D8%A7%DB%8C%D8%AA%D8%A7%D9%84%DB%8C%D8%A7%DB%8C%DB%8C.jpg",
   },
   {
     id: "american",
     label: "پیتزا آمریکایی",
     image:
-      "https://sib360.com/Content/images/4372/Platform7Menu/251966/pizza-usa.jpg",
+      "https://sib360.com/Content/images/4372/shortcutTab/289952/%D9%BE%DB%8C%D8%AA%D8%B2%D8%A7%20%D8%A2%D9%85%D8%B1%DB%8C%DA%A9%D8%A7%DB%8C%DB%8C.jpg",
   },
   {
     id: "combo",
     label: "اکو کمبو",
     image:
-      "https://sib360.com/Content/images/4372/Platform7Menu/251964/combo.jpg",
+      "https://sib360.com/Content/images/4372/shortcutTab/289953/%D8%A7%DA%A9%D9%88%DA%A9%D9%85%D8%A8%D9%88.jpg",
   },
   {
     id: "stromboli",
     label: "استرامبولی",
     image:
-      "https://sib360.com/Content/images/4372/Platform7Menu/251969/stramboli.jpg",
+      "https://sib360.com/Content/images/4372/shortcutTab/289954/%D8%A7%D8%B3%D8%AA%D8%B1%D8%A7%D9%85%D8%A8%D9%88%D9%84%DB%8C.jpg",
   },
   {
     id: "burger",
     label: "برگر",
     image:
-      "https://sib360.com/Content/images/4372/Platform7Menu/251970/burger.jpg",
+      "https://sib360.com/Content/images/4372/shortcutTab/289955/%D8%A8%D8%B1%DA%AF%D8%B1.jpg",
   },
   {
     id: "diet",
     label: "ساندویچ گریل رژیمی",
     image:
-      "https://sib360.com/Content/images/4372/Platform7Menu/292042/grilled-sandwich.jpg",
+      "https://sib360.com/Content/images/4372/shortcutTab/292117/%D9%85%D8%B1%D8%BA%20%D9%88%20%D8%A7%D8%B3%D9%81%D9%86%D8%A7%D8%AC%20%D8%B1%DA%98%DB%8C%D9%85%DB%8C.jpg",
   },
   {
     id: "sandwich",
     label: "ساندویچ",
     image:
-      "https://sib360.com/Content/images/4372/Platform7Menu/251971/sandwich.jpg",
+      "https://sib360.com/Content/images/4372/shortcutTab/289956/%D8%B3%D8%A7%D9%86%D8%AF%D9%88%DB%8C%DA%86.jpg",
   },
   {
     id: "fried",
     label: "سوخاری",
     image:
-      "https://sib360.com/Content/images/4372/Platform7Menu/251972/sokhari.jpg",
+      "https://sib360.com/Content/images/4372/shortcutTab/289957/%D8%B3%D9%88%D8%AE%D8%A7%D8%B1%DB%8C.jpg",
   },
   {
     id: "kids",

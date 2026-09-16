@@ -12,7 +12,7 @@ Near-identical recreation of [sib360.com/online](https://sib360.com/online), reb
 | info@sib360.com | info@vizhen.com |
 | Copyright © Sib360, Inc. | Copyright © Vizhen, Inc. |
 
-Everything else (menu copy, ingredient lists, prices, category names, footer address/phones, designer credit «هفت ستاره») is unchanged. Words like **سیب زمینی** and the drink flavor **هی دی سیب** were **not** renamed — they are food names, not the brand.
+Everything else (menu copy, ingredient lists, prices, category names, footer address/phones) is unchanged. Footer credit is now «ساخته شده توسط گروه طراحی ویژن». Words like **سیب زمینی** and the drink flavor **هی دی سیب** were **not** renamed — they are food names, not the brand.
 
 The original logo is an image (`WebsiteLogo.jpg`). This project uses a **text/SVG placeholder** (`public/logo.svg` + the `Logo` component). Drop the official ویژن artwork in `public/logo.svg` when you have it.
 

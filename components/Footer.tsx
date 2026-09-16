@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { Logo } from "./Logo";
 
@@ -29,17 +28,17 @@ export function Footer() {
   }
 
   return (
-    <footer className="relative mt-16 overflow-hidden rounded-t-[40px] bg-brand-purple text-white">
+    <footer className="relative mt-20 overflow-visible rounded-t-[40px] bg-brand-purple text-white">
       <button
         type="button"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className="absolute left-1/2 top-0 z-10 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-brand-green text-white shadow"
+        className="goto_top absolute left-1/2 top-0 z-20 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-brand-green text-lg text-white shadow-lg"
         aria-label="بازگشت به بالا"
       >
-        ↑
+        <span className="img">↑</span>
       </button>
 
-      <div className="mx-auto grid max-w-[1400px] gap-10 px-6 py-14 md:grid-cols-3">
+      <div className="mx-auto grid max-w-[1400px] gap-10 px-6 pb-14 pt-16 md:grid-cols-3">
         <div>
           <Logo variant="dark" />
           <p className="mt-4 text-sm leading-7 text-purple-100">
@@ -99,10 +98,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10 px-6 py-4 text-center text-xs text-purple-200">
-        <p className="mb-1">تمامی حقوق این وب سایت متعلق به وب سایت شورا و فرهنگ عامه می باشد</p>
-        <Link href="https://haftsetare.com" className="hover:text-white">
-          طراحی و پیاده سازی توسط هفت ستاره
-        </Link>
+        <p>ساخته شده توسط گروه طراحی ویژن</p>
         <p className="mt-1">Copyright © 2026 Vizhen, Inc. All Rights Reserved.</p>
       </div>
     </footer>

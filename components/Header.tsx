@@ -4,114 +4,114 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Logo } from "./Logo";
+import { SearchOverlay } from "./SearchOverlay";
 import { useShop, cartCount } from "@/lib/store";
 
-const nav = [
+export const navItems = [
   { href: "/", label: "صفحه اصلی" },
   { href: "/franchise", label: "اخذ نمایندگی" },
   { href: "/b2b", label: "فروش سازمانی" },
   { href: "/branches", label: "لیست شعب" },
-  { href: "/star", label: "ورود به ویژن استار", extra: true },
+  { href: "/star", label: "ورود به ویژن استار" },
   { href: "/m", label: "مشاهده منو" },
   { href: "/online", label: "سفارش اینترنتی", pill: true },
 ];
 
 export function Header() {
   const pathname = usePathname();
-  const { items, user, setCartOpen, setAuthOpen } = useShop();
-  const [open, setOpen] = useState(false);
+  const isHome = pathname === "/";
+  const { items, user, setCartOpen, setAuthOpen, setMenuOpen, setSearchOpen } = useShop();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   const count = mounted ? cartCount(items) : 0;
 
   return (
-    <header className="fixed top-0 right-0 left-0 z-50 bg-white shadow-header">
-      <div className="mx-auto flex h-[76px] max-w-[1400px] items-center gap-2 px-4 lg:gap-3 lg:px-8">
-        <Link href="/" aria-label="ویژن" className="shrink-0">
-          <Logo />
-        </Link>
-
+    <header
+      className={`fixed top-0 right-0 left-0 z-50 ${
+        isHome
+          ? "rounded-b-[40px] bg-brand-purple text-white shadow-lg"
+          : "bg-white text-neutral-900 shadow-header"
+      }`}
+    >
+      <div className="mx-auto flex h-[80px] max-w-[1400px] items-center gap-2 px-4 lg:px-8">
         <button
           type="button"
-          onClick={() => setAuthOpen(true)}
-          className="hidden sm:inline-flex h-10 shrink-0 items-center rounded-full bg-brand-purple px-5 text-sm font-medium text-white transition hover:bg-brand-purple-dark"
-        >
-          {user ? user.name : "عضویتورود"}
-        </button>
-
-        <button
-          type="button"
-          onClick={() => setCartOpen(true)}
-          className="relative inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-brand-purple transition hover:bg-purple-50"
-          aria-label="سبد خرید"
-        >
-          <CartIcon />
-          <span className="absolute -top-0.5 -left-0.5 grid h-5 min-w-5 place-items-center rounded-full bg-brand-green px-1 text-[11px] font-bold text-white">
-            {count}
-          </span>
-        </button>
-
-        <nav className="mr-auto hidden items-center gap-1 lg:flex">
-          {nav
-            .filter((n) => !n.extra)
-            .map((item) => {
-              const active = item.pill
-                ? pathname === "/online"
-                : item.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(item.href);
-              return (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className={
-                    active
-                      ? "rounded-full bg-brand-green px-5 py-2 text-sm font-semibold text-white transition hover:bg-brand-green-dark"
-                      : "rounded-full px-3 py-2 text-sm text-neutral-800 transition hover:text-brand-purple"
-                  }
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-        </nav>
-
-        <button
-          type="button"
-          className="mr-auto inline-flex h-10 w-10 items-center justify-center rounded-full text-brand-purple lg:hidden"
           aria-label="فهرست"
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => setMenuOpen(true)}
+          className={`inline-flex h-11 w-11 items-center justify-center rounded-full ${
+            isHome ? "text-white" : "text-brand-purple"
+          }`}
         >
           <MenuIcon />
         </button>
-      </div>
 
-      {open && (
-        <div className="border-t border-purple-100 bg-white px-4 py-3 lg:hidden">
-          <div className="flex flex-col gap-1">
-            {nav.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="rounded-xl px-3 py-2 text-sm hover:bg-purple-50"
-              >
-                {item.label}
-              </Link>
-            ))}
-            <button
-              type="button"
-              onClick={() => {
-                setOpen(false);
-                setAuthOpen(true);
-              }}
-              className="rounded-xl px-3 py-2 text-right text-sm text-brand-purple sm:hidden"
-            >
-              عضویتورود
-            </button>
-          </div>
+        <button
+          type="button"
+          onClick={() => setSearchOpen(true)}
+          aria-label="جستجو"
+          className={`inline-flex h-11 w-11 items-center justify-center rounded-full ${
+            isHome ? "text-white" : "text-brand-purple"
+          }`}
+        >
+          <SearchIcon />
+        </button>
+
+        <div className="mr-auto flex items-center gap-2">
+          {!isHome && (
+            <nav className="ml-2 hidden items-center gap-1 xl:flex">
+              {navItems
+                .filter((n) => n.label !== "ورود به ویژن استار")
+                .map((item) => {
+                  const active = item.pill
+                    ? pathname === "/online"
+                    : item.href === "/"
+                      ? pathname === "/"
+                      : pathname.startsWith(item.href);
+                  return (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      className={
+                        active
+                          ? "rounded-full bg-brand-green px-4 py-2 text-sm font-semibold text-white"
+                          : "rounded-full px-3 py-2 text-sm hover:text-brand-purple"
+                      }
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                })}
+            </nav>
+          )}
+
+          <button
+            type="button"
+            onClick={() => setCartOpen(true)}
+            className={`relative inline-flex h-11 w-11 items-center justify-center ${isHome ? "text-white" : "text-brand-purple"}`}
+            aria-label="سبد خرید"
+          >
+            <CartIcon />
+            <span className="absolute -top-0.5 -left-0.5 grid h-5 min-w-5 place-items-center rounded-full bg-brand-green px-1 text-[11px] font-bold text-white">
+              {count}
+            </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setAuthOpen(true)}
+            className={`inline-flex h-10 items-center rounded-full px-5 text-sm font-medium ${
+              isHome ? "bg-white text-brand-purple" : "bg-brand-purple text-white"
+            }`}
+          >
+            {user ? user.name : "ورود"}
+          </button>
+
+          <Link href="/" aria-label="ویژن" className="shrink-0">
+            <Logo variant={isHome ? "dark" : "light"} />
+          </Link>
         </div>
-      )}
+      </div>
+      <SearchOverlay />
     </header>
   );
 }
@@ -130,8 +130,17 @@ function CartIcon() {
 
 function MenuIcon() {
   return (
+    <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <path d="M4 7h16M4 12h16M4 17h10" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function SearchIcon() {
+  return (
     <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M4 6h16M4 12h16M4 18h16" />
+      <circle cx="11" cy="11" r="7" />
+      <path d="M20 20l-3-3" />
     </svg>
   );
 }

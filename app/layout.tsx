@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { CartDrawer } from "@/components/CartDrawer";
 import { AddressModal } from "@/components/AddressModal";
 import { AuthModal } from "@/components/AuthModal";
+import { NavDrawer } from "@/components/NavDrawer";
 
 const vazir = Vazirmatn({
   subsets: ["arabic", "latin"],
@@ -54,8 +55,9 @@ export default function RootLayout({
     <html lang="fa" dir="rtl" className={vazir.variable}>
       <body className="font-vazir min-h-screen bg-white antialiased">
         <Header />
-        <main className="pt-[76px] min-h-[60vh]">{children}</main>
+        <main className="pt-[80px] min-h-[60vh]">{children}</main>
         <Footer />
+        <NavDrawer />
         <CartDrawer />
         <AddressModal />
         <AuthModal />

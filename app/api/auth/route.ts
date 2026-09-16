@@ -2,11 +2,11 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   const body = await request.json().catch(() => ({}));
+  const mobile = String(body.mobile || body.password || "").trim();
   const email = String(body.email || "").trim();
-  const password = String(body.password || "");
-  if (!email || password.length < 4) {
+  if (!mobile && !email) {
     return NextResponse.json(
-      { message: "ایمیل و رمز عبور (حداقل ۴ کاراکتر) را وارد کنید." },
+      { message: "شماره موبایل را وارد کنید." },
       { status: 400 },
     );
   }
@@ -15,6 +15,6 @@ export async function POST(request: Request) {
     (body.mode === "register" ? "کاربر عزیز" : "کاربر عزیز");
   return NextResponse.json({
     message: body.mode === "register" ? "عضویت با موفقیت انجام شد." : "ورود موفق بود.",
-    user: { name, email },
+    user: { name, email: email || `${mobile}@vizhen.local` },
   });
 }

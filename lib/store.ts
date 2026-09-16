@@ -17,6 +17,8 @@ interface StoreState {
   authOpen: boolean;
   addressOpen: boolean;
   search: string;
+  searchOpen: boolean;
+  menuOpen: boolean;
   addItem: (product: Product) => void;
   removeItem: (id: number) => void;
   setQty: (id: number, qty: number) => void;
@@ -27,6 +29,8 @@ interface StoreState {
   setAuthOpen: (open: boolean) => void;
   setAddressOpen: (open: boolean) => void;
   setSearch: (q: string) => void;
+  setSearchOpen: (open: boolean) => void;
+  setMenuOpen: (open: boolean) => void;
 }
 
 export const useShop = create<StoreState>()(
@@ -39,6 +43,8 @@ export const useShop = create<StoreState>()(
       authOpen: false,
       addressOpen: false,
       search: "",
+      searchOpen: false,
+      menuOpen: false,
       addItem: (product) => {
         const existing = get().items.find((i) => i.product.id === product.id);
         if (existing) {
@@ -69,7 +75,9 @@ export const useShop = create<StoreState>()(
       setCartOpen: (cartOpen) => set({ cartOpen }),
       setAuthOpen: (authOpen) => set({ authOpen }),
       setAddressOpen: (addressOpen) => set({ addressOpen }),
-      setSearch: (search) => set({ search }),
+      setSearch: (search) => set({ search, searchOpen: true }),
+      setSearchOpen: (searchOpen) => set({ searchOpen, search: searchOpen ? get().search : "" }),
+      setMenuOpen: (menuOpen) => set({ menuOpen }),
     }),
     {
       name: "vizhen-shop",

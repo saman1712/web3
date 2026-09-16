@@ -4,16 +4,22 @@ import { coupons } from "@/lib/categories";
 
 export function CouponList() {
   return (
-    <section className="mt-10">
-      <h2 className="mb-4 text-lg font-bold text-brand-purple">لیست کوپن ها</h2>
-      <div className="grid gap-3 md:grid-cols-3">
-        {coupons.map((c) => (
+    <section className="couponList_wrapper mt-10">
+      <h2 className="relative mb-5 pr-12 text-lg font-bold text-brand-purple">
+        <span className="absolute right-0 top-0 h-9 w-9 rounded-full bg-[radial-gradient(circle,#642d90_0%,transparent_70%)] opacity-80" />
+        لیست کوپن ها
+      </h2>
+      <div className="couponContainer flex gap-4 overflow-x-auto pb-4 lg:grid lg:grid-cols-3 lg:overflow-visible">
+        {coupons.map((c, i) => (
           <article
             key={c.id}
-            className="rounded-2xl border border-dashed border-brand-green bg-green-50/60 p-4"
+            className="relative min-w-[260px] overflow-hidden rounded-2xl px-6 py-5 text-white lg:min-w-0"
+            style={{ background: i % 2 === 0 ? "#62be4b" : "#642d90" }}
           >
-            <h3 className="text-sm font-bold text-brand-purple">{c.title}</h3>
-            <p className="mt-2 text-xs leading-6 text-neutral-600">{c.description}</p>
+            <i className="circle right pointer-events-none absolute -top-5 right-[16%] h-10 w-10 rounded-full bg-white" />
+            <i className="circle left pointer-events-none absolute -bottom-5 right-[16%] h-10 w-10 rounded-full bg-white" />
+            <span className="title block text-sm font-bold">{c.title}</span>
+            <span className="mt-2 block text-xs leading-6 text-white/90">{c.description}</span>
           </article>
         ))}
       </div>
