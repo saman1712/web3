@@ -1,0 +1,11 @@
+node_modules
+.next
+out
+.vercel
+*.tsbuildinfo
+.env
+.env.local
+scraped-products.json
+products.clean.json
+sib360-desktop-top.png
+sib360-categories.png

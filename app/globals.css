@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-purple: #642d90;
+  --brand-green: #62be4b;
+  --platfrom7-them-background: #642d90;
+  --platfrom7-them-2-background: #62be4b;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  direction: rtl;
+  background: #fff;
+  color: #222;
+}
+
+/* Hide native number input arrows */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Custom scrollbar matching the purple theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #642d90;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f3eef8;
+}
+
+.category-rail::-webkit-scrollbar {
+  height: 0;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
