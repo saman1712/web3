@@ -80,7 +80,7 @@ export const useShop = create<StoreState>()(
       setMenuOpen: (menuOpen) => set({ menuOpen }),
     }),
     {
-      name: "vizhen-shop",
+      name: "vision-shop",
       partialize: (s) => ({
         items: s.items,
         address: s.address,

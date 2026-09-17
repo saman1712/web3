@@ -2,7 +2,7 @@
   "name": "vizhen",
   "version": "1.0.0",
   "private": true,
-  "description": "ویژن — online food ordering (visual clone of sib360.com/online with rebranded names)",
+  "description": "ویژن — online food ordering (visual clone of sib360.com/online with Vision branding)",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

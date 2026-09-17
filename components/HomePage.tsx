@@ -13,7 +13,7 @@ const promoFranchise = "https://sib360.com/Content/images/4372/shortcutTab/29590
 const aboutBlocks = [
   {
     letter: "V",
-    watermark: "VIZHEN",
+    watermark: "VISION",
     title: "درباره پیتزا ویژن",
     href: "/m",
     image:
@@ -35,7 +35,7 @@ const aboutBlocks = [
   },
   {
     letter: "I",
-    watermark: "VIZHEN",
+    watermark: "VISION",
     title: "سفارش آنلاین از ویژن",
     href: "/online",
     image:
@@ -43,11 +43,11 @@ const aboutBlocks = [
     body: `با بیش از 50شعبه در سراسر کشور، میزبان سفارشات آنلاین شما هستیم.
 کلیک کنید و همین حالا یک سفارش سریع و خوشمزه از ویژن را تجربه کنید!
 
-With over 50 branches nationwide, we're ready to take your online orders. Click now and experience a quick and delicious order from Vizhen!`,
+With over 50 branches nationwide, we're ready to take your online orders. Click now and experience a quick and delicious order from Vision!`,
   },
   {
-    letter: "Z",
-    watermark: "VIZHEN",
+    letter: "S",
+    watermark: "VISION",
     title: "دریافت نمایندگی ویژن",
     href: "/franchise",
     image: "https://sib360.com/Content/images/4372/shortcutTab/292733/pic02.jpg",
@@ -55,11 +55,11 @@ With over 50 branches nationwide, we're ready to take your online orders. Click 
 
 پیتزا ویژن با بیش از 15 سال سابقه‌ی موفق در عرصه‌ی فرانچایز رستوران فست‌فود هم‌زمان با راه‌اندازی حدود 70 شعبه در طول این سال‌ها به یک برند شناخته شده و مورد اعتماد تبدیل شده است. همراه شما هستیم تا با سیستم عملیاتی پایدار و حمایت مستمر تجربه‌ی راه‌اندازی یک کسب و کار هوشمند و پویا را رقم بزنید.
 
-With over 15 years of success in the fast-food franchise industry and the establishment of nearly 70 locations, Pizza Vizhen has become a recognized and trusted brand. We are here to partner with you, providing a sustainable operational system and ongoing support to help you launch a smart, dynamic, and successful business.`,
+With over 15 years of success in the fast-food franchise industry and the establishment of nearly 70 locations, Pizza Vision has become a recognized and trusted brand. We are here to partner with you, providing a sustainable operational system and ongoing support to help you launch a smart, dynamic, and successful business.`,
   },
   {
-    letter: "H",
-    watermark: "VIZHEN",
+    letter: "N",
+    watermark: "VISION",
     title: "فروش سازمانی",
     href: "/b2b",
     image: "https://sib360.com/Content/images/4372/shortcutTab/292735/pic04.jpg",
@@ -78,20 +78,33 @@ export function HomePage() {
     <div className="bg-white">
       <section className="mx-auto w-[90%] max-w-[1360px] pt-4 lg:pt-6">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-stretch">
-          <Link href="/online" className="relative block overflow-hidden lg:w-[66%]">
-            <Image
-              src={banner}
-              alt="پیتزا ویژن"
-              width={1360}
-              height={450}
-              unoptimized
-              priority
-              className="h-auto w-full object-cover"
-            />
-            <span className="absolute bottom-5 left-5 rounded-full bg-white/90 px-5 py-2 text-sm font-semibold text-neutral-800 shadow">
-              مشاهده بیشتر
-            </span>
-          </Link>
+          <div className="relative overflow-hidden lg:w-[66%]">
+            <Link href="/online" className="block">
+              <Image
+                src={banner}
+                alt="پیتزا ویژن"
+                width={1360}
+                height={450}
+                unoptimized
+                priority
+                className="h-auto w-full object-cover"
+              />
+            </Link>
+            <div className="absolute bottom-5 left-5 flex flex-wrap gap-2">
+              <Link
+                href="/online"
+                className="rounded-full bg-white/90 px-6 py-2.5 text-sm font-semibold text-neutral-800 shadow"
+              >
+                مشاهده بیشتر
+              </Link>
+              <Link
+                href="/m"
+                className="rounded-full bg-brand-purple px-6 py-2.5 text-sm font-semibold text-white shadow"
+              >
+                مشاهده منو
+              </Link>
+            </div>
+          </div>
 
           <div className="flex flex-col gap-3 lg:w-[32.6%]">
             <Link href="/b2b" className="block overflow-hidden">
@@ -153,6 +166,14 @@ export function HomePage() {
                 </span>
               </Link>
             ))}
+          </div>
+          <div className="mt-6 text-center">
+            <Link
+              href="/m"
+              className="inline-flex rounded-full bg-brand-purple px-8 py-2.5 text-sm font-semibold text-white"
+            >
+              مشاهده منو
+            </Link>
           </div>
         </div>
       </section>

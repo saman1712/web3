@@ -25,13 +25,13 @@ export function Header() {
   const count = mounted ? cartCount(items) : 0;
 
   return (
-    <header className="fixed top-0 right-0 left-0 z-50 bg-white text-neutral-900 shadow-header">
+    <header className="fixed top-0 right-0 left-0 z-50 rounded-b-[32px] bg-white text-neutral-900 shadow-header">
       <div className="mx-auto flex h-[76px] max-w-[1400px] items-center gap-1 px-3 lg:px-6">
         <button
           type="button"
           aria-label="فهرست"
           onClick={() => setMenuOpen(true)}
-          className="inline-flex h-11 w-11 items-center justify-center text-brand-purple"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full text-brand-purple hover:bg-purple-50"
         >
           <MenuIcon />
         </button>
@@ -40,22 +40,22 @@ export function Header() {
           type="button"
           onClick={() => setSearchOpen(true)}
           aria-label="جستجو"
-          className="inline-flex h-11 w-11 items-center justify-center text-brand-purple"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full text-brand-purple hover:bg-purple-50"
         >
           <SearchIcon />
         </button>
 
-        <nav className="mr-2 hidden flex-1 items-center justify-start gap-0.5 xl:flex">
+        <nav className="mr-2 hidden flex-1 items-center justify-start gap-1 lg:flex">
           {navItems.map((item) => (
             <Link
               key={item.label}
               href={item.href}
               className={
                 item.pill
-                  ? "rounded-full bg-brand-green px-3.5 py-1.5 text-[13px] font-semibold text-white"
-                  : `rounded-full px-2.5 py-1.5 text-[13px] hover:text-brand-purple ${
+                  ? "rounded-full bg-brand-green px-4 py-2 text-[13px] font-semibold text-white"
+                  : `rounded-full px-3.5 py-2 text-[13px] hover:bg-purple-50 hover:text-brand-purple ${
                       (item.href === "/" ? pathname === "/" : pathname.startsWith(item.href))
-                        ? "font-semibold text-brand-purple"
+                        ? "bg-purple-50 font-semibold text-brand-purple"
                         : "text-neutral-800"
                     }`
               }
@@ -69,7 +69,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setCartOpen(true)}
-            className="relative inline-flex h-11 w-11 items-center justify-center text-brand-purple"
+            className="relative inline-flex h-11 w-11 items-center justify-center rounded-full bg-brand-purple text-white"
             aria-label="سبد خرید"
           >
             <CartIcon />
@@ -81,7 +81,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setAuthOpen(true)}
-            className="inline-flex h-10 items-center rounded-full bg-brand-purple px-5 text-sm font-medium text-white"
+            className="inline-flex h-10 items-center rounded-full bg-brand-purple px-6 text-sm font-medium text-white"
           >
             {user ? user.name : "ورود"}
           </button>

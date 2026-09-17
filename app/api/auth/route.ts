@@ -15,6 +15,6 @@ export async function POST(request: Request) {
     (body.mode === "register" ? "کاربر عزیز" : "کاربر عزیز");
   return NextResponse.json({
     message: body.mode === "register" ? "عضویت با موفقیت انجام شد." : "ورود موفق بود.",
-    user: { name, email: email || `${mobile}@vizhen.local` },
+    user: { name, email: email || `${mobile}@vision.local` },
   });
 }

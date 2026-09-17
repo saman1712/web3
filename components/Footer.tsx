@@ -55,8 +55,8 @@ export function Footer() {
           <p>امور مشتریان : 1610 ( بدون پیش شماره )</p>
           <p>
             ایمیل :{" "}
-            <a className="underline decoration-white/40" href="mailto:info@vizhen.com">
-              info@vizhen.com
+            <a className="underline decoration-white/40" href="mailto:info@vision.com">
+              info@vision.com
             </a>
           </p>
         </div>
@@ -99,7 +99,7 @@ export function Footer() {
 
       <div className="border-t border-white/10 px-6 py-4 text-center text-xs text-purple-200">
         <p>ساخته شده توسط گروه طراحی ویژن</p>
-        <p className="mt-1">Copyright © 2026 Vizhen, Inc. All Rights Reserved.</p>
+        <p className="mt-1">Copyright © 2026 Vision, Inc. All Rights Reserved.</p>
       </div>
     </footer>
   );

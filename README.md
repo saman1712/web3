@@ -7,10 +7,10 @@ Near-identical recreation of [sib360.com/online](https://sib360.com/online), reb
 | Original | New |
 | --- | --- |
 | سیب 360 / سیب۳۶۰ / پیتزا سیب 360 | **ویژن** / پیتزا ویژن |
-| Sib360 / Sib 360 / sib360 | Vizhen / ویژن |
+| Sib360 / Sib 360 / sib360 | Vision / ویژن |
 | سیب استار | ویژن استار |
-| info@sib360.com | info@vizhen.com |
-| Copyright © Sib360, Inc. | Copyright © Vizhen, Inc. |
+| info@sib360.com | info@vision.com |
+| Copyright © Sib360, Inc. | Copyright © Vision, Inc. |
 
 Everything else (menu copy, ingredient lists, prices, category names, footer address/phones) is unchanged. Footer credit is now «ساخته شده توسط گروه طراحی ویژن». Words like **سیب زمینی** and the drink flavor **هی دی سیب** were **not** renamed — they are food names, not the brand.
 

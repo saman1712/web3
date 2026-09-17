@@ -26,7 +26,7 @@ export function OnlineMenu({ hideDiscounts = false }: { hideDiscounts?: boolean 
 
   return (
     <div className="mx-auto max-w-[1400px] px-3 py-4 lg:px-8 lg:py-6">
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[120px_1fr] lg:gap-8">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[88px_1fr] lg:gap-6">
         <CategorySidebar active={active} onSelect={setActive} hideDiscounts={hideDiscounts} />
 
         <div>
