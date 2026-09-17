@@ -6,5 +6,5 @@ export const metadata: Metadata = {
 };
 
 export default function MenuPage() {
-  return <OnlineMenu />;
+  return <OnlineMenu hideDiscounts />;
 }

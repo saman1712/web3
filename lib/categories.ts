@@ -3,102 +3,110 @@ import type { CategoryId } from "./types";
 export interface Category {
   id: CategoryId;
   label: string;
-  /** Original menu artwork from the source site (food photos, not brand marks). */
+  /** Large circular shortcut artwork used on the homepage carousel. */
   image: string;
+  /** Small 40×35 menu icon used in the /online category rail. */
+  icon?: string;
 }
+
+const menu = "https://sib360.com/Content/images/4372/Platform7Menu";
+const tab = "https://sib360.com/Content/images/4372/shortcutTab";
 
 export const categories: Category[] = [
   {
     id: "discounts",
     label: "تخفیف دارهای شهریورماه",
-    image:
-      "https://sib360.com/Content/images/4372/Platform7Menu/crop/284740/pizza-usa.jpg",
+    image: `${menu}/crop/284740/pizza-usa.jpg`,
   },
   {
     id: "italian",
     label: "پیتزا ایتالیایی",
-    image:
-      "https://sib360.com/Content/images/4372/shortcutTab/289951/%D9%BE%DB%8C%D8%AA%D8%B2%D8%A7%20%D8%A7%DB%8C%D8%AA%D8%A7%D9%84%DB%8C%D8%A7%DB%8C%DB%8C.jpg",
+    image: `${tab}/289951/%D9%BE%DB%8C%D8%AA%D8%B2%D8%A7%20%D8%A7%DB%8C%D8%AA%D8%A7%D9%84%DB%8C%D8%A7%DB%8C%DB%8C.jpg`,
+    icon: `${menu}/251965/pizza-italian.jpg`,
   },
   {
     id: "american",
     label: "پیتزا آمریکایی",
-    image:
-      "https://sib360.com/Content/images/4372/shortcutTab/289952/%D9%BE%DB%8C%D8%AA%D8%B2%D8%A7%20%D8%A2%D9%85%D8%B1%DB%8C%DA%A9%D8%A7%DB%8C%DB%8C.jpg",
+    image: `${tab}/289952/%D9%BE%DB%8C%D8%AA%D8%B2%D8%A7%20%D8%A2%D9%85%D8%B1%DB%8C%DA%A9%D8%A7%DB%8C%DB%8C.jpg`,
+    icon: `${menu}/251966/pizza-usa.jpg`,
   },
   {
     id: "combo",
     label: "اکو کمبو",
-    image:
-      "https://sib360.com/Content/images/4372/shortcutTab/289953/%D8%A7%DA%A9%D9%88%DA%A9%D9%85%D8%A8%D9%88.jpg",
+    image: `${tab}/289953/%D8%A7%DA%A9%D9%88%DA%A9%D9%85%D8%A8%D9%88.jpg`,
+    icon: `${menu}/251964/combo.jpg`,
   },
   {
     id: "stromboli",
     label: "استرامبولی",
-    image:
-      "https://sib360.com/Content/images/4372/shortcutTab/289954/%D8%A7%D8%B3%D8%AA%D8%B1%D8%A7%D9%85%D8%A8%D9%88%D9%84%DB%8C.jpg",
+    image: `${tab}/289954/%D8%A7%D8%B3%D8%AA%D8%B1%D8%A7%D9%85%D8%A8%D9%88%D9%84%DB%8C.jpg`,
+    icon: `${menu}/251969/stramboli.jpg`,
   },
   {
     id: "burger",
     label: "برگر",
-    image:
-      "https://sib360.com/Content/images/4372/shortcutTab/289955/%D8%A8%D8%B1%DA%AF%D8%B1.jpg",
+    image: `${tab}/289955/%D8%A8%D8%B1%DA%AF%D8%B1.jpg`,
+    icon: `${menu}/251970/burger.jpg`,
   },
   {
     id: "diet",
     label: "ساندویچ گریل رژیمی",
-    image:
-      "https://sib360.com/Content/images/4372/shortcutTab/292117/%D9%85%D8%B1%D8%BA%20%D9%88%20%D8%A7%D8%B3%D9%81%D9%86%D8%A7%D8%AC%20%D8%B1%DA%98%DB%8C%D9%85%DB%8C.jpg",
+    image: `${tab}/292117/%D9%85%D8%B1%D8%BA%20%D9%88%20%D8%A7%D8%B3%D9%81%D9%86%D8%A7%D8%AC%20%D8%B1%DA%98%DB%8C%D9%85%DB%8C.jpg`,
+    icon: `${menu}/292042/grilled-sandwich.jpg`,
   },
   {
     id: "sandwich",
     label: "ساندویچ",
-    image:
-      "https://sib360.com/Content/images/4372/shortcutTab/289956/%D8%B3%D8%A7%D9%86%D8%AF%D9%88%DB%8C%DA%86.jpg",
+    image: `${tab}/289956/%D8%B3%D8%A7%D9%86%D8%AF%D9%88%DB%8C%DA%86.jpg`,
+    icon: `${menu}/251971/sandwich.jpg`,
   },
   {
     id: "fried",
     label: "سوخاری",
-    image:
-      "https://sib360.com/Content/images/4372/shortcutTab/289957/%D8%B3%D9%88%D8%AE%D8%A7%D8%B1%DB%8C.jpg",
+    image: `${tab}/289957/%D8%B3%D9%88%D8%AE%D8%A7%D8%B1%DB%8C.jpg`,
+    icon: `${menu}/251972/sokhari.jpg`,
   },
   {
     id: "kids",
     label: "غذای کودک",
-    image:
-      "https://sib360.com/Content/images/4372/Platform7Menu/251973/kids.jpg",
+    image: `${tab}/289958/%D8%BA%D8%B0%D8%A7%DB%8C%20%DA%A9%D9%88%D8%AF%DA%A9.jpg`,
+    icon: `${menu}/251973/kids.jpg`,
   },
   {
     id: "mixmeal",
     label: "میکس میل",
-    image:
-      "https://sib360.com/Content/images/4372/Platform7Menu/251974/mixmeal.jpg",
+    image: `${tab}/289959/%D9%85%DB%8C%DA%A9%D8%B3%20%D9%85%DB%8C%D9%84.jpg`,
+    icon: `${menu}/251974/mixmeal.jpg`,
   },
   {
     id: "lahmacun",
     label: "لاهماجون",
-    image:
-      "https://sib360.com/Content/images/4372/Platform7Menu/251975/lahmacune.jpg",
+    image: `${tab}/289960/%D9%84%D8%A7%D9%87%D9%85%D8%A7%D8%AC%D9%88%D9%86.jpg`,
+    icon: `${menu}/251975/lahmacune.jpg`,
   },
   {
     id: "appetizer",
     label: "پیش غذا و سالاد",
-    image:
-      "https://sib360.com/Content/images/4372/Platform7Menu/251976/salad.jpg",
+    image: `${menu}/251976/salad.jpg`,
+    icon: `${menu}/251976/salad.jpg`,
   },
   {
     id: "drink",
     label: "نوشیدنی",
-    image:
-      "https://sib360.com/Content/images/4372/Platform7Menu/251977/drink.jpg",
+    image: `${tab}/289961/%D9%86%D9%88%D8%B4%DB%8C%D8%AF%D9%86%DB%8C.jpg`,
+    icon: `${menu}/251977/drink.jpg`,
   },
   {
     id: "extra",
     label: "سرویس اضافه",
-    image:
-      "https://sib360.com/Content/images/4372/Platform7Menu/251978/extra.jpg",
+    image: `${tab}/289962/%D8%B3%D8%B1%D9%88%DB%8C%D8%B3%20%D8%A7%D8%B6%D8%A7%D9%81%D9%87.jpg`,
+    icon: `${menu}/251978/extra.jpg`,
   },
 ];
+
+export const homeFoodGroups = categories.filter(
+  (c) => c.id !== "discounts" && c.id !== "appetizer",
+);
 
 export const coupons = [
   {
@@ -119,45 +127,54 @@ export const coupons = [
   },
 ];
 
-/** Sample branches taken from the original directory page. */
 export const branches = [
-  {
-    name: "شعبه اشرفی اصفهانی",
-    address:
-      "اشرفی اصفهانی جنوب به شمال، نبش ورودی اتوبان حکیم شرق، پلاک 199",
-    city: "تهران",
-    phone: "02141304000",
-  },
-  {
-    name: "شعبه آزادگان",
-    address:
-      "میدان آزادگان، خیابان دنیامالی، بین دوازدهم و سیزدهم غربی، پلاک ۱۵۶",
-    city: "تهران",
-    phone: "02141304000",
-  },
-  {
-    name: "شعبه ارم",
-    address: "تهران، ارم، بلوار الهام، خیابان اصغرزاده",
-    city: "تهران",
-    phone: "02141304000",
-  },
-  {
-    name: "شعبه تهرانپارس",
-    address: "تهرانپارس، فلکه چهارم، بلوار خوشوقت، نبش 220 غربی",
-    city: "تهران",
-    phone: "02141304000",
-  },
-  {
-    name: "شعبه کرج",
-    address:
-      "کرج، بلوار جمهوری، مابین میدان جمهوری و پل روحانی، نبش کوچه پاییز",
-    city: "کرج",
-    phone: "02141304000",
-  },
-  {
-    name: "شعبه کیش",
-    address: "کیش، بلوار تهران، خیابان کوشا، پلاک 59",
-    city: "کیش",
-    phone: "02141304000",
-  },
+  { name: "استاد معین", address: "خیابان آزادی، ابتدای خیابان استاد معین، پلاک 176", phone: "02166000584 - 02166000585", city: "تهران" },
+  { name: "اشرفی اصفهانی", address: "اشرفی اصفهانی جنوب به شمال، نبش ورودی اتوبان حکیم شرق، پلاک 199", phone: "02144296771 - 02144296778", city: "تهران" },
+  { name: "افسریه", address: "افسریه، 15 متری سوم، بین کوچه 33 و 34، پلاک 503", phone: "02133231912 - 02133231913", city: "تهران" },
+  { name: "اندیشه", address: "میدان آزادگان، خیابان دنیامالی، بین دوازدهم و سیزدهم غربی، پلاک ۱۵۶", phone: "02165530015 - 02165530016", city: "تهران" },
+  { name: "ایران مال", address: "مجتمع ایران مال، طبقه G1، فود کورت الماس", phone: "02147673577 - 02147673578", city: "تهران" },
+  { name: "ایران مال 2", address: "مجتمع ایران مال، طبقه G3، فودکورت سپید، پلاک RD220", phone: "02147672020 - 02147672021", city: "تهران" },
+  { name: "بلوار ارتش", address: "بلوار ارتش، مسیر شرق به غرب، بین خیابان نخل و بلوار اوشان، نرسیده به داروخانه شبانه روزی", phone: "02122467852 - 02122469867", city: "تهران" },
+  { name: "بلوار تعاون", address: "آلاله غربی، جنب بانک مسکن، پلاک 2/1", phone: "02144153500 - 02144153501", city: "تهران" },
+  { name: "پارک ارم", address: "تهران، ارم، بلوار الهام، خیابان اصغرزاده", phone: "", city: "تهران" },
+  { name: "پردیس", address: "پردیس، بلوار سفیر امید، نرسیده به میدان عدالت، خیابان پیام", phone: "02176240360 - 02176240260", city: "پردیس" },
+  { name: "پونک", address: "پونک، 35 متری گلستان (بلوار مخبری)، بین خیابان ایران زمین و اتوبان ستاری، پلاک 5", phone: "02146048961 - 02146048971", city: "تهران" },
+  { name: "تهرانپارس", address: "تهرانپارس، فلکه چهارم، بلوار خوشوقت، نبش 220 غربی", phone: "02177376666", city: "تهران" },
+  { name: "جلفا", address: "جلفا بلوار امام خمینی روبروی راه آهن", phone: "04142027030 - 04142027040", city: "جلفا" },
+  { name: "جهان آرا", address: "میدان گلها، بلوار شهید گمنام، بین جهان آرا و کردستان، پلاک 97", phone: "02188221772 - 02188221773", city: "تهران" },
+  { name: "جهانشهر", address: "کرج، بلوار جمهوری، مابین میدان جمهوری و پل روحانی، نبش کوچه پاییز", phone: "02634217910 - 02634217917", city: "کرج" },
+  { name: "چیتگر", address: "چیتگر، شهرک گلستان، بلوار هاشم زاده، سروستان ۸، ابتدای ۱۸ متری سروستان، پلاک 40", phone: "02144747405 - 02144747406", city: "تهران" },
+  { name: "حکیمیه", address: "حکیمیه، بلوار بهار، پلاک ۷۴", phone: "02177309284 - 02177312192", city: "تهران" },
+  { name: "دلاوران", address: "دلاوران، خیابان صاحب الزمان (خیابان 196 غربی)، نرسیده به دلاوران، پلاک 53 (نبش کوچه شهید اصغری)", phone: "02177044740 - 02177044730", city: "تهران" },
+  { name: "دیباجی", address: "خیابان دولت، خیابان مطهری، پلاک 1/4", phone: "02122584049 - 02122584345", city: "تهران" },
+  { name: "رودهن", address: "رودهن، خیابان امام خمینی، بین کوچه عرفان و بلوار لاله صحرا، پلاک 1343", phone: "02176524001 - 02176524003", city: "رودهن" },
+  { name: "زعفرانیه", address: "زعفرانیه، خیابان مقدس اردبیلی، نبش خیابان ب، مجتمع تجاری میلان، پلاک 144", phone: "02122015009 - 02122015008", city: "تهران" },
+  { name: "ستارخان", address: "خیابان ستارخان، روبروی خیابان حبیب‌الهی، نبش خیابان تاکستان، پلاک ۵٢٣", phone: "02166538004 - 02166538005", city: "تهران" },
+  { name: "سعادت آباد", address: "سعادت آباد، بلوار فرحزادی، بلوار نورانی، پلاک 21", phone: "02122141836 - 02122141837", city: "تهران" },
+  { name: "شاهرود", address: "شاهرود، انتهای خیابان باغ زندان، ابتدای بلوار امام خمینی (مابین بلوار آزادی و ابن سینا، جنب پیش دبستانی کافی)", phone: "02332223433", city: "شاهرود" },
+  { name: "شریعتی", address: "خیابان شریعتی پایین تر از میرداماد روبروی بیمارستان مفید پلاک ١١١٥", phone: "02126723502 - 02174326 - 02122887583 - 02122887584", city: "تهران" },
+  { name: "شهرری", address: "شهرری، ضلع غربی حرم، میدان مدرس، کوچه دانش پور، پلاک 12", phone: "02155936702 - 02155937561 - 09012444646", city: "شهرری" },
+  { name: "شهرک غرب", address: "شهرک غرب، بلوار فرحزادی، مرکز خرید پلاتین، طبقه همکف، واحد8", phone: "02188377018 - 02188377019", city: "تهران" },
+  { name: "شهریار", address: "خیابان رسول اکرم-نرسیده به میدان نماز-خیابان مطهری-پلاک ۲۰", phone: "02165299552 - 02165299551", city: "شهریار" },
+  { name: "شیراز جنوبی", address: "خیابان شیراز جنوبی، خیابان آقاعلیخانی، مجتمع ونک پارک، مجاور برج الوند، پلاک ۶۵ تجاری", phone: "02188622403 - 02188622475", city: "تهران" },
+  { name: "عباس آباد", address: "عباس آباد، خیابان هویزه، بین سهند و سهروردی شمالی، پلاک 44", phone: "02188500960 - 02188500961", city: "تهران" },
+  { name: "فردیس", address: "فردیس، بهاران غربی(کانال غربی)، روبروی سه‌راه دهکده، مجتمع برلیان", phone: "02691010121 - 02691010191", city: "فردیس" },
+  { name: "فرودگاه مهرآباد", address: "فرودگاه مهرآباد سکوی ترمینال 6", phone: "02144674710", city: "تهران" },
+  { name: "قرچک", address: "قرچک، خیابان اصلی، بلوار امام خمینی، نرسیده به بخشداری (ایستگاه ژیان)، پلاک 150/2", phone: "02136172000 - 02136173000", city: "قرچک" },
+  { name: "قم", address: "میدان شهید دستغیب، خیابان مهدیه، پلاک ۱۱۰", phone: "02532927030 - 02532914242", city: "قم" },
+  { name: "کارگر", address: "خیابان کارگر جنوبی، ابتدای خیابان آذربایجان، پلاک 188", phone: "02166930876 - 02166926140", city: "تهران" },
+  { name: "کیش", address: "کیش، بلوار تهران، خیابان کوشا، پلاک 59", phone: "07644422231 - 07644422232", city: "کیش" },
+  { name: "گلشهر", address: "مهرویلا، خیابان درختی، روبروی فروشگاه امیران، ساختمان پویان، پلاک۱۶", phone: "02633531516 - 02633531718", city: "کرج" },
+  { name: "گلپایگان", address: "گلپایگان، خیابان گلپایگان، نبش کوچه مسجد حاجی، پلاک ۱۱", phone: "03157425000", city: "گلپایگان" },
+  { name: "مجیدیه", address: "بزرگراه رسالت، خیابان اثنی عشری، پلاک 14", phone: "02188428003 - 02188425522", city: "تهران" },
+  { name: "میدان امام حسین", address: "میدان امام حسین، ابتدای خیابان 17 شهریور، پلاک 1909", phone: "02133360366 - 02133360367", city: "تهران" },
+  { name: "نارمک", address: "نارمک میدان هفت حوض، گلبرگ غربی، خیابان بختیاری(سامان) شمالی، پلاک 298", phone: "02177133800 - 02177133801", city: "تهران" },
+  { name: "نازی آباد", address: "نازی آباد، خیابان مدائن(بابایی)، نبش کوچه خزایی پور، پلاک 1", phone: "02155075010", city: "تهران" },
+  { name: "نیاوران", address: "نیاوران (خیابان باهنر)، بعد از چهارراه مژده، سمت چپ، پلاک 412", phone: "02122735370 - 02122712496", city: "تهران" },
+  { name: "نیایش مال", address: "جنت آباد مرکزی، تقاطع نیایش، مجتمع تجاری نیایش، طبقه پنج، واحد یک", phone: "02148814463", city: "تهران" },
+  { name: "ورامین", address: "ورامین، خیابان حافظ، نبش حافظ ۵، پلاک ۳۳", phone: "02136247000 - 02136246000", city: "ورامین" },
+  { name: "هشتگرد", address: "هشتگرد، بلوار امام خمینی، میدان امام خمینی ( دخانیات )، جنب دبستان علم و ادب، مجتمع تجاری تک", phone: "02644230808 - 02644230707", city: "هشتگرد" },
+  { name: "هروی", address: "میدان هروی خیابان وفامنش خیابان آزادی خیابان افتخاریان پلاک ۴", phone: "02122944620 - 02122944610", city: "تهران" },
+  { name: "همدان", address: "خیابان مهدیه، روبروی دبیرستان شریعتی، پلاک ۶۷", phone: "08138271313 - 08138271616", city: "همدان" },
+  { name: "یافت آباد", address: "آیت اله سعیدی، بالاتر از چهارراه یافت آباد، جنب بوستان نوجوان، پلاک 687", phone: "02166288318 - 02166289577", city: "تهران" },
 ];

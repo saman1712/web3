@@ -8,39 +8,30 @@ import { SearchOverlay } from "./SearchOverlay";
 import { useShop, cartCount } from "@/lib/store";
 
 export const navItems = [
+  { href: "/online", label: "سفارش اینترنتی", pill: true },
   { href: "/", label: "صفحه اصلی" },
   { href: "/franchise", label: "اخذ نمایندگی" },
   { href: "/b2b", label: "فروش سازمانی" },
   { href: "/branches", label: "لیست شعب" },
   { href: "/star", label: "ورود به ویژن استار" },
   { href: "/m", label: "مشاهده منو" },
-  { href: "/online", label: "سفارش اینترنتی", pill: true },
 ];
 
 export function Header() {
   const pathname = usePathname();
-  const isHome = pathname === "/";
   const { items, user, setCartOpen, setAuthOpen, setMenuOpen, setSearchOpen } = useShop();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   const count = mounted ? cartCount(items) : 0;
 
   return (
-    <header
-      className={`fixed top-0 right-0 left-0 z-50 ${
-        isHome
-          ? "rounded-b-[40px] bg-brand-purple text-white shadow-lg"
-          : "bg-white text-neutral-900 shadow-header"
-      }`}
-    >
-      <div className="mx-auto flex h-[80px] max-w-[1400px] items-center gap-2 px-4 lg:px-8">
+    <header className="fixed top-0 right-0 left-0 z-50 bg-white text-neutral-900 shadow-header">
+      <div className="mx-auto flex h-[76px] max-w-[1400px] items-center gap-1 px-3 lg:px-6">
         <button
           type="button"
           aria-label="فهرست"
           onClick={() => setMenuOpen(true)}
-          className={`inline-flex h-11 w-11 items-center justify-center rounded-full ${
-            isHome ? "text-white" : "text-brand-purple"
-          }`}
+          className="inline-flex h-11 w-11 items-center justify-center text-brand-purple"
         >
           <MenuIcon />
         </button>
@@ -49,45 +40,36 @@ export function Header() {
           type="button"
           onClick={() => setSearchOpen(true)}
           aria-label="جستجو"
-          className={`inline-flex h-11 w-11 items-center justify-center rounded-full ${
-            isHome ? "text-white" : "text-brand-purple"
-          }`}
+          className="inline-flex h-11 w-11 items-center justify-center text-brand-purple"
         >
           <SearchIcon />
         </button>
 
-        <div className="mr-auto flex items-center gap-2">
-          {!isHome && (
-            <nav className="ml-2 hidden items-center gap-1 xl:flex">
-              {navItems
-                .filter((n) => n.label !== "ورود به ویژن استار")
-                .map((item) => {
-                  const active = item.pill
-                    ? pathname === "/online"
-                    : item.href === "/"
-                      ? pathname === "/"
-                      : pathname.startsWith(item.href);
-                  return (
-                    <Link
-                      key={item.label}
-                      href={item.href}
-                      className={
-                        active
-                          ? "rounded-full bg-brand-green px-4 py-2 text-sm font-semibold text-white"
-                          : "rounded-full px-3 py-2 text-sm hover:text-brand-purple"
-                      }
-                    >
-                      {item.label}
-                    </Link>
-                  );
-                })}
-            </nav>
-          )}
+        <nav className="mr-2 hidden flex-1 items-center justify-start gap-0.5 xl:flex">
+          {navItems.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className={
+                item.pill
+                  ? "rounded-full bg-brand-green px-3.5 py-1.5 text-[13px] font-semibold text-white"
+                  : `rounded-full px-2.5 py-1.5 text-[13px] hover:text-brand-purple ${
+                      (item.href === "/" ? pathname === "/" : pathname.startsWith(item.href))
+                        ? "font-semibold text-brand-purple"
+                        : "text-neutral-800"
+                    }`
+              }
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
 
+        <div className="mr-auto flex items-center gap-2">
           <button
             type="button"
             onClick={() => setCartOpen(true)}
-            className={`relative inline-flex h-11 w-11 items-center justify-center ${isHome ? "text-white" : "text-brand-purple"}`}
+            className="relative inline-flex h-11 w-11 items-center justify-center text-brand-purple"
             aria-label="سبد خرید"
           >
             <CartIcon />
@@ -99,15 +81,13 @@ export function Header() {
           <button
             type="button"
             onClick={() => setAuthOpen(true)}
-            className={`inline-flex h-10 items-center rounded-full px-5 text-sm font-medium ${
-              isHome ? "bg-white text-brand-purple" : "bg-brand-purple text-white"
-            }`}
+            className="inline-flex h-10 items-center rounded-full bg-brand-purple px-5 text-sm font-medium text-white"
           >
             {user ? user.name : "ورود"}
           </button>
 
           <Link href="/" aria-label="ویژن" className="shrink-0">
-            <Logo variant={isHome ? "dark" : "light"} />
+            <Logo variant="light" />
           </Link>
         </div>
       </div>

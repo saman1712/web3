@@ -8,8 +8,8 @@ import { CategorySidebar } from "./CategorySidebar";
 import { ProductCard } from "./ProductCard";
 import { CouponList } from "./CouponList";
 
-export function OnlineMenu() {
-  const [active, setActive] = useState<CategoryId>("discounts");
+export function OnlineMenu({ hideDiscounts = false }: { hideDiscounts?: boolean }) {
+  const [active, setActive] = useState<CategoryId>(hideDiscounts ? "italian" : "discounts");
 
   useEffect(() => {
     const hash = window.location.hash.replace("#", "") as CategoryId;
@@ -17,18 +17,22 @@ export function OnlineMenu() {
   }, []);
 
   const filtered = useMemo(() => {
-    return products.filter((p) => p.category === active || (active === "discounts" && p.featured));
+    return products.filter(
+      (p) => p.category === active || (active === "discounts" && p.featured),
+    );
   }, [active]);
 
   const sectionTitle = categories.find((c) => c.id === active)?.label || "";
 
   return (
     <div className="mx-auto max-w-[1400px] px-3 py-4 lg:px-8 lg:py-6">
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[140px_1fr] lg:gap-6">
-        <CategorySidebar active={active} onSelect={setActive} />
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[120px_1fr] lg:gap-8">
+        <CategorySidebar active={active} onSelect={setActive} hideDiscounts={hideDiscounts} />
 
         <div>
-          <h2 className="titr mb-4 text-lg font-bold text-brand-purple">{sectionTitle}</h2>
+          <h2 className="titr mb-6 text-center text-[20px] font-bold text-neutral-800">
+            <span>{sectionTitle}</span>
+          </h2>
           <div className="productslide grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
             {filtered.map((p) => (
               <ProductCard key={p.id} product={p} />

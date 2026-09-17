@@ -55,7 +55,7 @@ export default function RootLayout({
     <html lang="fa" dir="rtl" className={vazir.variable}>
       <body className="font-vazir min-h-screen bg-white antialiased">
         <Header />
-        <main className="pt-[80px] min-h-[60vh]">{children}</main>
+        <main className="pt-[76px] min-h-[60vh]">{children}</main>
         <Footer />
         <NavDrawer />
         <CartDrawer />

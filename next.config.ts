@@ -10,6 +10,11 @@ const nextConfig: NextConfig = {
         hostname: "sib360.com",
         pathname: "/Content/**",
       },
+      {
+        protocol: "https",
+        hostname: "franchise.sib360.com",
+        pathname: "/wp-content/**",
+      },
     ],
   },
 };

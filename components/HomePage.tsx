@@ -2,242 +2,209 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react";
-import { categories } from "@/lib/categories";
-import { useShop } from "@/lib/store";
+import { useRef } from "react";
+import { homeFoodGroups } from "@/lib/categories";
 
-const heroPizza =
-  "https://sib360.com/Content/images/4372/Product/Thumb3/277934/%D9%BE%D9%BE%D8%B1%D9%88%D9%86%DB%8C%20%D8%A7%DB%8C%D8%AA%D8%A7%D9%84%DB%8C%D8%A7%DB%8C%DB%8C%2032.jpg";
+const banner =
+  "https://sib360.com/Content/images/4372/GalleryPictures/crop/295912/website-banner-v1.0-0506.jpg";
+const promoB2b = "https://sib360.com/Content/images/4372/shortcutTab/295908.jpg";
+const promoFranchise = "https://sib360.com/Content/images/4372/shortcutTab/295909.jpg";
 
-const features = [
-  { title: "کیفیت", icon: "quality" },
-  { title: "سرعت", icon: "speed" },
-  { title: "تنوع", icon: "variety" },
-  { title: "تازگی", icon: "fresh" },
+const aboutBlocks = [
+  {
+    letter: "V",
+    watermark: "VIZHEN",
+    title: "درباره پیتزا ویژن",
+    href: "/m",
+    image:
+      "https://sib360.com/Content/images/4372/shortcutTab/289567/popup-02-mosalastazeh-2.jpg",
+    body: `پیتزا ویژن به‌عنوان یکی از بزرگ‌ترین و شناخته‌شده‌ترین رستوران‌های زنجیره‌ای تخصصی پیتزا در ایران، با شبکه‌ای گسترده از شعب در استان‌های تهران، البرز و سایر شهرهای کشور، تجربه‌ای متفاوت از کیفیت، تنوع و خدمات حرفه‌ای را به مشتریان خود ارائه می‌دهد. این مجموعه با بهره‌گیری از منویی متنوع و به‌روز، تلاش می‌کند پاسخ‌گوی سلایق مختلف باشد و هم‌زمان با استفاده از مواد اولیه استاندارد و باکیفیت، سطحی متمایز از طعم و سلامت را تضمین کند.
+
+به تازگی پیتزا ویژن با افتخار، سه محصول جدید و جذاب را به دسته محبوب پیتزاهای آمریکایی مثلثی شکل اضافه کرده است؛ محصولاتی وسوسه‌انگیز با طعم‌هایی خاص که تجربه‌ای تازه و متفاوت را برای علاقه‌مندان به پیتزای آمریکایی رقم می‌زنند:
+
+پیتزا چیکن باربیکیو آمریکایی
+ترکیبی لذیذ از تکه‌های مرغ با طعم دودی و دل‌نشین باربیکیو، در کنار پنیر کش‌دار و خمیر تازه؛ انتخابی هیجان‌انگیز برای دوستداران طعم‌های خاص و متفاوت.
+
+پیتزا دونر آلفردو آمریکایی
+ترکیبی منحصربه‌فرد از لایه‌های خوش‌طعم دونر گوشت که با سس آلفردوی غلیظ و پنیر پیتزا همراه شده‌اند؛ طعمی غنی، متفاوت و فراموش‌نشدنی در هر برش.
+
+پیتزا قارچ و اسفناج آمریکایی
+ترکیبی خوش‌عطر و دلچسب از قارچ و اسفناج تازه، آغشته به سس آلفردوی خامه‌ای؛ انتخابی جذاب برای کسانی که به طعم‌های لطیف، خاص و متفاوت علاقه دارند.
+
+اگر به دنبال تجربه طعمی تازه در دنیای پیتزاهای آمریکایی هستید، محصولات جدید پیتزا ویژن را از دست ندهید.`,
+  },
+  {
+    letter: "I",
+    watermark: "VIZHEN",
+    title: "سفارش آنلاین از ویژن",
+    href: "/online",
+    image:
+      "https://sib360.com/Content/images/4372/shortcutTab/289555/popup-02-mosalastazeh.jpg",
+    body: `با بیش از 50شعبه در سراسر کشور، میزبان سفارشات آنلاین شما هستیم.
+کلیک کنید و همین حالا یک سفارش سریع و خوشمزه از ویژن را تجربه کنید!
+
+With over 50 branches nationwide, we're ready to take your online orders. Click now and experience a quick and delicious order from Vizhen!`,
+  },
+  {
+    letter: "Z",
+    watermark: "VIZHEN",
+    title: "دریافت نمایندگی ویژن",
+    href: "/franchise",
+    image: "https://sib360.com/Content/images/4372/shortcutTab/292733/pic02.jpg",
+    body: `آیا برای آغاز مسیر موفقیت آماده اید؟
+
+پیتزا ویژن با بیش از 15 سال سابقه‌ی موفق در عرصه‌ی فرانچایز رستوران فست‌فود هم‌زمان با راه‌اندازی حدود 70 شعبه در طول این سال‌ها به یک برند شناخته شده و مورد اعتماد تبدیل شده است. همراه شما هستیم تا با سیستم عملیاتی پایدار و حمایت مستمر تجربه‌ی راه‌اندازی یک کسب و کار هوشمند و پویا را رقم بزنید.
+
+With over 15 years of success in the fast-food franchise industry and the establishment of nearly 70 locations, Pizza Vizhen has become a recognized and trusted brand. We are here to partner with you, providing a sustainable operational system and ongoing support to help you launch a smart, dynamic, and successful business.`,
+  },
+  {
+    letter: "H",
+    watermark: "VIZHEN",
+    title: "فروش سازمانی",
+    href: "/b2b",
+    image: "https://sib360.com/Content/images/4372/shortcutTab/292735/pic04.jpg",
+    body: `راهکارهای ساده و منعطف فروش سازمانی پیتزا ویژن با هدف کاهش هزینه‌ها و فرآیندهای اجرایی برای سازمان‌های کوچک و بزرگ طی سال‌های گذشته همراه با ایجاد تجربه‌ای امن، شفاف و قابل مدیریت تجربه‌ای یکپارچه و اثربخش برای سازمان‌ها و مخاطب ایجاد کرده است.`,
+  },
 ];
 
 export function HomePage() {
-  const router = useRouter();
-  const setAddress = useShop((s) => s.setAddress);
-  const [street, setStreet] = useState("");
-  const [plaque, setPlaque] = useState("");
-  const [floor, setFloor] = useState("");
+  const scroller = useRef<HTMLDivElement>(null);
 
-  function onSubmit(e: FormEvent) {
-    e.preventDefault();
-    setAddress({
-      mode: "delivery",
-      street,
-      details: [plaque, floor].filter(Boolean).join("، "),
-      branchName: "نزدیک‌ترین شعبه",
-    });
-    router.push("/online");
+  function scrollGroups(dir: 1 | -1) {
+    scroller.current?.scrollBy({ left: dir * -280, behavior: "smooth" });
   }
 
   return (
     <div className="bg-white">
-      <section className="relative overflow-hidden">
-        <div className="mx-auto grid max-w-[1360px] items-center gap-8 px-4 py-8 lg:grid-cols-2 lg:px-8 lg:py-4">
-          <div className="relative order-2 mx-auto aspect-square w-full max-w-[560px] lg:order-1">
-            <div className="absolute inset-[8%] rounded-full bg-[#f4eef8]" />
+      <section className="mx-auto w-[90%] max-w-[1360px] pt-4 lg:pt-6">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-stretch">
+          <Link href="/online" className="relative block overflow-hidden lg:w-[66%]">
             <Image
-              src={heroPizza}
+              src={banner}
               alt="پیتزا ویژن"
-              fill
+              width={1360}
+              height={450}
               unoptimized
               priority
-              className="object-contain drop-shadow-2xl"
+              className="h-auto w-full object-cover"
             />
-          </div>
+            <span className="absolute bottom-5 left-5 rounded-full bg-white/90 px-5 py-2 text-sm font-semibold text-neutral-800 shadow">
+              مشاهده بیشتر
+            </span>
+          </Link>
 
-          <div className="order-1 lg:order-2">
-            <h1 className="text-[42px] font-black leading-none text-brand-purple md:text-[56px]">
-              سفارش آنلاین غذا
-            </h1>
-            <p className="mt-3 text-sm text-neutral-500 md:text-base">
-              برای ثبت سفارش غذا آدرس خود را انتخاب کنید ....
-            </p>
-            <form onSubmit={onSubmit} className="mt-6 space-y-3">
-              <input
-                required
-                value={street}
-                onChange={(e) => setStreet(e.target.value)}
-                placeholder="خیابان اصلی و فرعی"
-                className="h-12 w-full rounded-full border border-neutral-200 bg-white px-5 text-sm outline-none focus:border-brand-purple"
+          <div className="flex flex-col gap-3 lg:w-[32.6%]">
+            <Link href="/b2b" className="block overflow-hidden">
+              <Image
+                src={promoB2b}
+                alt="فروش سازمانی"
+                width={460}
+                height={220}
+                unoptimized
+                className="h-auto w-full object-cover"
               />
-              <div className="grid grid-cols-2 gap-3">
-                <input
-                  value={plaque}
-                  onChange={(e) => setPlaque(e.target.value)}
-                  placeholder="پلاک"
-                  className="h-12 rounded-full border border-neutral-200 px-5 text-sm outline-none focus:border-brand-purple"
-                />
-                <input
-                  value={floor}
-                  onChange={(e) => setFloor(e.target.value)}
-                  placeholder="طبقه"
-                  className="h-12 rounded-full border border-neutral-200 px-5 text-sm outline-none focus:border-brand-purple"
-                />
-              </div>
-              <button
-                type="submit"
-                className="h-12 w-full rounded-full bg-brand-green text-base font-bold text-white transition hover:bg-brand-green-dark"
-              >
-                تایید آدرس
-              </button>
-            </form>
+            </Link>
+            <Link href="/franchise" className="block overflow-hidden">
+              <Image
+                src={promoFranchise}
+                alt="اخذ نمایندگی"
+                width={460}
+                height={220}
+                unoptimized
+                className="h-auto w-full object-cover"
+              />
+            </Link>
           </div>
-        </div>
-
-        <div className="mx-auto grid max-w-[1100px] grid-cols-2 gap-3 px-4 pb-10 sm:grid-cols-4 lg:px-8">
-          {features.map((f) => (
-            <div
-              key={f.title}
-              className="flex flex-col items-center rounded-2xl bg-white px-3 py-5 shadow-[0_8px_24px_rgba(100,45,144,0.08)]"
-            >
-              <span className="mb-2 grid h-12 w-12 place-items-center rounded-full bg-purple-50 text-brand-purple">
-                <FeatureIcon name={f.icon} />
-              </span>
-              <span className="text-sm font-semibold text-brand-purple">{f.title}</span>
-            </div>
-          ))}
         </div>
       </section>
 
-      <section className="px-4 py-10 lg:px-8">
-        <h2 className="mb-8 text-center text-2xl font-bold text-brand-purple md:text-3xl">
+      <section className="relative mx-auto mt-10 w-[90%] max-w-[1360px] pb-6">
+        <h2 className="food-groups-title mb-6 text-center text-[22px] font-bold text-neutral-800">
           گروه های غذایی
         </h2>
-        <div className="mx-auto grid max-w-[1100px] grid-cols-3 gap-x-4 gap-y-8 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7">
-          {categories
-            .filter((c) => c.id !== "discounts")
-            .map((c) => (
+        <div className="relative">
+          <button
+            type="button"
+            aria-label="قبلی"
+            onClick={() => scrollGroups(-1)}
+            className="group-nav group-nav-prev absolute right-[-8px] top-[70px] z-10 hidden h-[45px] w-[45px] items-center justify-center rounded-full border border-black/10 bg-white shadow-sm md:flex"
+          />
+          <button
+            type="button"
+            aria-label="بعدی"
+            onClick={() => scrollGroups(1)}
+            className="group-nav group-nav-next absolute left-[-8px] top-[70px] z-10 hidden h-[45px] w-[45px] items-center justify-center rounded-full border border-black/10 bg-white shadow-sm md:flex"
+          />
+          <div
+            ref={scroller}
+            className="flex gap-2 overflow-x-auto pb-4 pt-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {homeFoodGroups.map((c) => (
               <Link
                 key={c.id}
                 href={`/online#${c.id}`}
-                className="group flex flex-col items-center"
+                className="flex w-[170px] shrink-0 flex-col items-center px-2"
               >
-                <span className="relative h-[88px] w-[88px] overflow-hidden rounded-full bg-[#f6f6f6] shadow-sm transition group-hover:scale-105 md:h-[110px] md:w-[110px]">
+                <span className="relative h-[170px] w-[170px] overflow-hidden rounded-full bg-[#f6f6f6]">
                   <Image src={c.image} alt={c.label} fill unoptimized className="object-cover" />
                 </span>
-                <span className="mt-2 text-center text-xs font-medium text-brand-purple md:text-sm">
+                <span className="mt-3 text-center text-sm font-medium text-brand-purple">
                   {c.label}
                 </span>
               </Link>
             ))}
+          </div>
         </div>
       </section>
 
-      <HomeBlock
-        letter="V"
-        title="درباره پیتزا ویژن"
-        href="/m"
-        image={categories.find((c) => c.id === "italian")!.image}
-      >
-        پیتزا ویژن به‌عنوان یکی از بزرگ‌ترین و شناخته‌شده‌ترین رستوران‌های زنجیره‌ای تخصصی پیتزا در ایران، با شبکه‌ای گسترده از شعب در استان‌های تهران، البرز و سایر شهرهای کشور، تجربه‌ای متفاوت از کیفیت، تنوع و خدمات حرفه‌ای را به مشتریان خود ارائه می‌دهد. این مجموعه با بهره‌گیری از منویی متنوع و به‌روز، تلاش می‌کند پاسخ‌گوی سلایق مختلف باشد و هم‌زمان با استفاده از مواد اولیه استاندارد و باکیفیت، سطحی متمایز از طعم و سلامت را تضمین کند.
-      </HomeBlock>
-
-      <HomeBlock
-        letter="I"
-        title="سفارش آنلاین از ویژن"
-        href="/online"
-        image={categories.find((c) => c.id === "american")!.image}
-        reverse
-      >
-        با بیش از 50شعبه در سراسر کشور، میزبان سفارشات آنلاین شما هستیم.
-        کلیک کنید و همین حالا یک سفارش سریع و خوشمزه از ویژن را تجربه کنید!
-      </HomeBlock>
-
-      <HomeBlock
-        letter="Z"
-        title="دریافت نمایندگی ویژن"
-        href="/franchise"
-        image={categories.find((c) => c.id === "burger")!.image}
-      >
-        آیا برای آغاز مسیر موفقیت آماده اید؟ پیتزا ویژن با بیش از 15 سال سابقه‌ی موفق در عرصه‌ی فرانچایز رستوران فست‌فود هم‌زمان با راه‌اندازی حدود 70 شعبه در طول این سال‌ها به یک برند شناخته شده و مورد اعتماد تبدیل شده است. همراه شما هستیم تا با سیستم عملیاتی پایدار و حمایت مستمر تجربه‌ی راه‌اندازی یک کسب و کار هوشمند و پویا را رقم بزنید.
-      </HomeBlock>
-
-      <HomeBlock
-        letter="N"
-        title="فروش سازمانی"
-        href="/b2b"
-        image={categories.find((c) => c.id === "combo")!.image}
-        reverse
-      >
-        راهکارهای ساده و منعطف فروش سازمانی پیتزا ویژن با هدف کاهش هزینه‌ها و فرآیندهای اجرایی برای سازمان‌های کوچک و بزرگ طی سال‌های گذشته همراه با ایجاد تجربه‌ای امن، شفاف و قابل مدیریت تجربه‌ای یکپارچه و اثربخش برای سازمان‌ها و مخاطب ایجاد کرده است.
-      </HomeBlock>
+      <section className="mt-4">
+        {aboutBlocks.map((block, i) => (
+          <article
+            key={block.letter}
+            className={`relative min-h-[420px] overflow-hidden lg:min-h-[560px] ${
+              i % 2 === 0 ? "" : "lg:flex-row-reverse"
+            }`}
+          >
+            <div
+              className={`backspan absolute inset-y-0 z-0 hidden bg-cover bg-no-repeat lg:block ${
+                i % 2 === 0 ? "right-0 bg-right" : "left-0 bg-left"
+              }`}
+              style={{
+                backgroundImage: `url(${block.image})`,
+                backgroundSize: "50%",
+                backgroundAttachment: "fixed",
+                width: "50%",
+                backgroundPosition: i % 2 === 0 ? "100% center" : "0 center",
+              }}
+            />
+            <div className="relative z-10 mx-auto grid w-[90%] max-w-[1360px] items-center gap-8 py-12 lg:grid-cols-2 lg:py-16">
+              <div className={`relative ${i % 2 === 1 ? "lg:order-2" : "lg:col-start-2"}`}>
+                <span className="pointer-events-none absolute -top-8 left-0 text-[110px] font-black leading-none text-[#eee6f4] lg:text-[140px]">
+                  {block.watermark}
+                </span>
+                <span className="relative z-10 float-right ml-3 mt-1 text-[72px] font-black leading-none text-[#d9c6e8] lg:text-[96px]">
+                  {block.letter}
+                </span>
+                <h2 className="relative z-10 mb-5 border-b border-neutral-300 pb-3 text-[21px] font-bold text-neutral-800">
+                  {block.title}
+                </h2>
+                <p className="relative z-10 whitespace-pre-line text-justify text-[15px] leading-8 text-neutral-700">
+                  {block.body}
+                </p>
+                <Link
+                  href={block.href}
+                  className="relative z-10 mt-8 inline-flex w-[132px] items-center justify-center rounded-full bg-brand-green px-4 py-2 text-sm font-semibold text-white"
+                >
+                  مشاهده بیشتر
+                </Link>
+              </div>
+              <div className={`relative aspect-[4/5] overflow-hidden lg:hidden ${i % 2 === 1 ? "lg:order-1" : ""}`}>
+                <Image src={block.image} alt={block.title} fill unoptimized className="object-cover" />
+              </div>
+            </div>
+          </article>
+        ))}
+      </section>
     </div>
-  );
-}
-
-function HomeBlock({
-  letter,
-  title,
-  href,
-  image,
-  children,
-  reverse,
-}: {
-  letter: string;
-  title: string;
-  href: string;
-  image: string;
-  children: React.ReactNode;
-  reverse?: boolean;
-}) {
-  return (
-    <section className="mx-auto grid max-w-[1200px] items-center gap-8 px-4 py-12 lg:grid-cols-[auto_1fr_1fr] lg:px-8">
-      <div
-        className={`hidden text-[120px] font-black leading-none text-[#f3eaf8] lg:block ${reverse ? "lg:order-3" : ""}`}
-      >
-        {letter}
-      </div>
-      <div className={reverse ? "lg:order-2" : ""}>
-        <h2 className="text-2xl font-bold text-brand-purple">{title}</h2>
-        <p className="mt-4 text-sm leading-8 text-neutral-600">{children}</p>
-        <Link
-          href={href}
-          className="mt-6 inline-flex rounded-full bg-brand-green px-6 py-2 text-sm font-semibold text-white hover:bg-brand-green-dark"
-        >
-          مشاهده بیشتر
-        </Link>
-      </div>
-      <div className={`relative aspect-[4/5] overflow-hidden rounded-[28px] bg-[#f6f6f6] ${reverse ? "lg:order-1" : ""}`}>
-        <Image src={image} alt={title} fill unoptimized className="object-cover" />
-      </div>
-    </section>
-  );
-}
-
-function FeatureIcon({ name }: { name: string }) {
-  const common = "h-6 w-6";
-  if (name === "speed") {
-    return (
-      <svg viewBox="0 0 24 24" className={common} fill="none" stroke="currentColor" strokeWidth="1.8">
-        <circle cx="12" cy="13" r="8" />
-        <path d="M12 9v4l2.5 1.5M12 5V3" />
-      </svg>
-    );
-  }
-  if (name === "variety") {
-    return (
-      <svg viewBox="0 0 24 24" className={common} fill="none" stroke="currentColor" strokeWidth="1.8">
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 7v10M8 12h8" />
-      </svg>
-    );
-  }
-  if (name === "fresh") {
-    return (
-      <svg viewBox="0 0 24 24" className={common} fill="none" stroke="currentColor" strokeWidth="1.8">
-        <path d="M5 19c4-10 14-12 14-12s-1 11-10 14c0 0-1-1-4-2z" />
-      </svg>
-    );
-  }
-  return (
-    <svg viewBox="0 0 24 24" className={common} fill="none" stroke="currentColor" strokeWidth="1.8">
-      <path d="M12 3l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z" />
-    </svg>
   );
 }

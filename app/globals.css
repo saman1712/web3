@@ -43,7 +43,79 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .category-rail::-webkit-scrollbar {
+  width: 0;
   height: 0;
+}
+
+.cat-stamp::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 120px;
+  background: url("https://sib360.com/Content/base/dynamic/shopping4492/img/107920.jpg")
+    center / 120px 120px no-repeat;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.cat-stamp:hover::before,
+.cat-stamp.is-selected::before {
+  opacity: 1;
+}
+
+.titr {
+  overflow: hidden;
+}
+
+.titr span {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+}
+
+.titr span::before,
+.titr span::after {
+  content: " ";
+  width: 933px;
+  height: 3px;
+  background: rgb(193, 177, 177);
+  position: absolute;
+  top: 50%;
+  right: 100%;
+}
+
+.titr span::after {
+  right: auto;
+  left: 100%;
+}
+
+.food-groups-title {
+  position: relative;
+}
+
+.group-nav::after {
+  content: " ";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgb(17, 17, 17) rgb(17, 17, 17) transparent transparent;
+}
+
+.group-nav-prev::after {
+  left: 12px;
+  top: 16px;
+  transform: rotate(45deg);
+}
+
+.group-nav-next::after {
+  left: 15px;
+  top: 16px;
+  transform: rotate(-136deg);
 }
 
 body {
