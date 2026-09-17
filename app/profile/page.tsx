@@ -70,6 +70,7 @@ export default function ProfilePage() {
 
   function savePhone(e: FormEvent) {
     e.preventDefault();
+    if (!user) return;
     if (!form.mobile.trim()) {
       setMessage("شماره موبایل را وارد کنید.");
       return;
