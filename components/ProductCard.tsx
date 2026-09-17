@@ -11,7 +11,7 @@ export function ProductCard({ product }: { product: Product }) {
   const unit = product.salePrice ?? product.price;
 
   return (
-    <article className="product-slider-wrapper group relative flex items-center gap-3 rounded-xl bg-[#f6f6f6] p-2 pb-4 sm:flex-col sm:items-stretch sm:p-3">
+    <article className="product-slider-wrapper group relative flex flex-col rounded-xl bg-[#f6f6f6] p-3 pb-3">
       {product.discount ? (
         <span className="absolute right-2 top-2 z-10 rounded-md bg-brand-green px-1.5 py-0.5 text-[11px] font-bold text-white">
           %{product.discount}
@@ -19,7 +19,7 @@ export function ProductCard({ product }: { product: Product }) {
       ) : null}
 
       <Link href={`/product/${product.slug}`} className="shrink-0">
-        <div className="relative h-[88px] w-[88px] overflow-hidden rounded-full bg-white sm:mx-auto sm:h-[150px] sm:w-[150px]">
+        <div className="relative mx-auto h-[150px] w-[150px] overflow-hidden rounded-full bg-white">
           <Image
             src={product.image}
             alt={product.name}
@@ -31,36 +31,40 @@ export function ProductCard({ product }: { product: Product }) {
         </div>
       </Link>
 
-      <div className="min-w-0 flex-1 sm:flex sm:flex-col">
+      <div className="mt-2 flex min-w-0 flex-1 flex-col">
         <Link href={`/product/${product.slug}`}>
-          <h3 className="product-name two-line-text line-clamp-2 text-[13px] font-semibold text-neutral-800 sm:mt-2 sm:min-h-[40px] sm:text-center sm:text-[15px] sm:text-brand-purple">
+          <h3 className="product-name line-clamp-2 min-h-[40px] text-center text-[15px] font-semibold text-brand-purple">
             {product.name}
           </h3>
         </Link>
-        <p className="product-titr mt-1 line-clamp-2 text-[11px] leading-5 text-neutral-500 sm:min-h-[40px] sm:text-center">
+        <p className="product-titr mt-1 line-clamp-2 min-h-[40px] text-center text-[11px] leading-5 text-neutral-500">
           {product.description}
         </p>
 
-        <div className="product-slider-price mt-2 flex items-end justify-between sm:mt-auto sm:pt-3">
+        <div className="mt-auto pt-3">
           <button
             type="button"
             onClick={() => addItem(product)}
-            aria-label="افزودن کالا به سبد خرید"
-            className="grid h-9 w-9 place-items-center rounded-full bg-brand-green text-lg font-bold text-white sm:h-11 sm:w-11"
+            className="flex w-full items-center justify-between gap-2 rounded-full bg-white py-1 pl-1 pr-4 shadow-sm ring-1 ring-black/5 transition hover:ring-brand-green"
           >
-            +
+            <span className="text-left">
+              {product.salePrice ? (
+                <span className="block text-[10px] text-neutral-400 line-through">
+                  {formatPrice(product.price)}
+                </span>
+              ) : null}
+              <span className="text-sm font-bold text-neutral-800">
+                {formatPrice(unit)}{" "}
+                <span className="text-[11px] font-normal text-neutral-500">تومان</span>
+              </span>
+            </span>
+            <span className="inline-flex items-center gap-1 rounded-full bg-brand-green px-3 py-2 text-[12px] font-semibold text-white">
+              <span className="grid h-6 w-6 place-items-center rounded-full bg-white/20 text-base leading-none">
+                +
+              </span>
+              افزودن
+            </span>
           </button>
-          <div className="text-left">
-            {product.salePrice ? (
-              <div className="mainPrice-temp text-[11px] text-neutral-400 line-through">
-                {formatPrice(product.price)}
-              </div>
-            ) : null}
-            <div className="price-temp text-sm font-bold text-neutral-800">
-              {formatPrice(unit)}{" "}
-              <span className="text-[11px] font-normal text-neutral-500">تومان</span>
-            </div>
-          </div>
         </div>
       </div>
     </article>

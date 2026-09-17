@@ -90,16 +90,10 @@ export function HomePage() {
                 className="h-auto w-full object-cover"
               />
             </Link>
-            <div className="absolute bottom-5 left-5 flex flex-wrap gap-2">
-              <Link
-                href="/online"
-                className="rounded-full bg-white/90 px-6 py-2.5 text-sm font-semibold text-neutral-800 shadow"
-              >
-                مشاهده بیشتر
-              </Link>
+            <div className="absolute bottom-5 left-5">
               <Link
                 href="/m"
-                className="rounded-full bg-brand-purple px-6 py-2.5 text-sm font-semibold text-white shadow"
+                className="rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-brand-purple shadow"
               >
                 مشاهده منو
               </Link>
@@ -170,7 +164,7 @@ export function HomePage() {
           <div className="mt-6 text-center">
             <Link
               href="/m"
-              className="inline-flex rounded-full bg-brand-purple px-8 py-2.5 text-sm font-semibold text-white"
+              className="inline-flex rounded-full bg-white px-8 py-2.5 text-sm font-semibold text-brand-purple ring-1 ring-black/10"
             >
               مشاهده منو
             </Link>

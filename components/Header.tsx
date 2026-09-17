@@ -1,75 +1,84 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Logo } from "./Logo";
 import { SearchOverlay } from "./SearchOverlay";
 import { useShop, cartCount } from "@/lib/store";
 
 export const navItems = [
-  { href: "/online", label: "سفارش اینترنتی", pill: true },
   { href: "/", label: "صفحه اصلی" },
   { href: "/franchise", label: "اخذ نمایندگی" },
   { href: "/b2b", label: "فروش سازمانی" },
   { href: "/branches", label: "لیست شعب" },
   { href: "/star", label: "ورود به ویژن استار" },
   { href: "/m", label: "مشاهده منو" },
+  { href: "/online", label: "سفارش اینترنتی" },
 ];
 
 export function Header() {
-  const pathname = usePathname();
-  const { items, user, setCartOpen, setAuthOpen, setMenuOpen, setSearchOpen } = useShop();
+  const { items, user, setCartOpen, setAuthOpen, setMenuOpen, setUser } = useShop();
   const [mounted, setMounted] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   useEffect(() => setMounted(true), []);
   const count = mounted ? cartCount(items) : 0;
 
   return (
     <header className="fixed top-0 right-0 left-0 z-50 rounded-b-[32px] bg-white text-neutral-900 shadow-header">
-      <div className="mx-auto flex h-[76px] max-w-[1400px] items-center gap-1 px-3 lg:px-6">
-        <button
-          type="button"
-          aria-label="فهرست"
-          onClick={() => setMenuOpen(true)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full text-brand-purple hover:bg-purple-50"
+      <div dir="ltr" className="relative mx-auto flex h-[76px] max-w-[1400px] items-center px-4 lg:px-8">
+        <div className="relative z-10 flex items-center gap-1">
+          <button
+            type="button"
+            onClick={() => {
+              if (user) setProfileOpen((v) => !v);
+              else setAuthOpen(true);
+            }}
+            className="inline-flex items-center gap-1.5 px-1 py-1 text-[14px] text-brand-purple"
+          >
+            <UserIcon />
+            {!user && (
+              <span
+                className="hidden sm:inline"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setAuthOpen(true);
+                }}
+              >
+                عضویت
+              </span>
+            )}
+            <span className="font-medium">{mounted && user ? user.name : "ورود"}</span>
+          </button>
+          {profileOpen && user && (
+            <div className="absolute top-[48px] left-0 z-50 min-w-[180px] rounded-2xl bg-white py-2 text-right shadow-lg" dir="rtl">
+              <p className="px-4 py-2 text-sm font-semibold text-brand-purple">{user.name}</p>
+              <button
+                type="button"
+                onClick={() => {
+                  setUser(null);
+                  setProfileOpen(false);
+                }}
+                className="block w-full px-4 py-2 text-sm text-neutral-600 hover:bg-purple-50"
+              >
+                خروج
+              </button>
+            </div>
+          )}
+        </div>
+
+        <Link
+          href="/"
+          aria-label="ویژن"
+          className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
         >
-          <MenuIcon />
-        </button>
+          <Logo />
+        </Link>
 
-        <button
-          type="button"
-          onClick={() => setSearchOpen(true)}
-          aria-label="جستجو"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full text-brand-purple hover:bg-purple-50"
-        >
-          <SearchIcon />
-        </button>
-
-        <nav className="mr-2 hidden flex-1 items-center justify-start gap-1 lg:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className={
-                item.pill
-                  ? "rounded-full bg-brand-green px-4 py-2 text-[13px] font-semibold text-white"
-                  : `rounded-full px-3.5 py-2 text-[13px] hover:bg-purple-50 hover:text-brand-purple ${
-                      (item.href === "/" ? pathname === "/" : pathname.startsWith(item.href))
-                        ? "bg-purple-50 font-semibold text-brand-purple"
-                        : "text-neutral-800"
-                    }`
-              }
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="mr-auto flex items-center gap-2">
+        <div className="relative z-10 ml-auto flex items-center gap-2">
           <button
             type="button"
             onClick={() => setCartOpen(true)}
-            className="relative inline-flex h-11 w-11 items-center justify-center rounded-full bg-brand-purple text-white"
+            className="relative inline-flex h-11 w-11 items-center justify-center rounded-full text-brand-purple"
             aria-label="سبد خرید"
           >
             <CartIcon />
@@ -77,22 +86,33 @@ export function Header() {
               {count}
             </span>
           </button>
-
+          <Link
+            href="/online"
+            className="rounded-full bg-brand-purple px-4 py-2 text-[13px] font-semibold text-white"
+          >
+            سفارش اینترنتی
+          </Link>
           <button
             type="button"
-            onClick={() => setAuthOpen(true)}
-            className="inline-flex h-10 items-center rounded-full bg-brand-purple px-6 text-sm font-medium text-white"
+            aria-label="فهرست"
+            onClick={() => setMenuOpen(true)}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-brand-purple"
           >
-            {user ? user.name : "ورود"}
+            <MenuIcon />
           </button>
-
-          <Link href="/" aria-label="ویژن" className="shrink-0">
-            <Logo variant="light" />
-          </Link>
         </div>
       </div>
       <SearchOverlay />
     </header>
+  );
+}
+
+function UserIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
+      <path d="M16.8 6.8a4.4 4.4 0 1 1-8.8 0 4.4 4.4 0 0 1 8.8 0Z" />
+      <path d="M4.8 20.7c.4-3.6 3.6-6.3 7.6-6.3s7.2 2.7 7.6 6.3" strokeLinecap="round" />
+    </svg>
   );
 }
 
@@ -112,15 +132,6 @@ function MenuIcon() {
   return (
     <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.8">
       <path d="M4 7h16M4 12h16M4 17h10" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function SearchIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
-      <circle cx="11" cy="11" r="7" />
-      <path d="M20 20l-3-3" />
     </svg>
   );
 }

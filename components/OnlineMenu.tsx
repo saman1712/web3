@@ -26,24 +26,19 @@ export function OnlineMenu({ hideDiscounts = false }: { hideDiscounts?: boolean 
 
   return (
     <div className="mx-auto max-w-[1400px] px-3 py-4 lg:px-8 lg:py-6">
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[88px_1fr] lg:gap-6">
-        <CategorySidebar active={active} onSelect={setActive} hideDiscounts={hideDiscounts} />
-
-        <div>
-          <h2 className="titr mb-6 text-center text-[20px] font-bold text-neutral-800">
-            <span>{sectionTitle}</span>
-          </h2>
-          <div className="productslide grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
-            {filtered.map((p) => (
-              <ProductCard key={p.id} product={p} />
-            ))}
-          </div>
-          {!filtered.length && (
-            <p className="py-16 text-center text-sm text-neutral-500">موردی یافت نشد.</p>
-          )}
-          <CouponList />
-        </div>
+      <CategorySidebar active={active} onSelect={setActive} hideDiscounts={hideDiscounts} />
+      <CouponList />
+      <h2 className="titr mb-6 mt-6 text-center text-[20px] font-bold text-neutral-800">
+        <span>{sectionTitle}</span>
+      </h2>
+      <div className="productslide grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
+        {filtered.map((p) => (
+          <ProductCard key={p.id} product={p} />
+        ))}
       </div>
+      {!filtered.length && (
+        <p className="py-16 text-center text-sm text-neutral-500">موردی یافت نشد.</p>
+      )}
     </div>
   );
 }

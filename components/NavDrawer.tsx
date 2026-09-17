@@ -6,7 +6,7 @@ import { navItems } from "./Header";
 import { useShop } from "@/lib/store";
 
 export function NavDrawer() {
-  const { menuOpen, setMenuOpen, setAuthOpen } = useShop();
+  const { menuOpen, setMenuOpen, setAuthOpen, setSearchOpen } = useShop();
 
   return (
     <AnimatePresence>
@@ -52,6 +52,16 @@ export function NavDrawer() {
                 className="block w-full px-6 py-3.5 text-right text-sm text-brand-purple"
               >
                 ورود / عضویت
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setMenuOpen(false);
+                  setSearchOpen(true);
+                }}
+                className="block w-full px-6 py-3.5 text-right text-sm text-neutral-800"
+              >
+                جستجو
               </button>
             </nav>
             <p className="px-6 py-4 text-xs text-neutral-400">منو دسترسی</p>

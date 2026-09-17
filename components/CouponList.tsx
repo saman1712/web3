@@ -4,22 +4,27 @@ import { coupons } from "@/lib/categories";
 
 export function CouponList() {
   return (
-    <section className="couponList_wrapper mt-10">
-      <h2 className="relative mb-5 pr-12 text-lg font-bold text-brand-purple">
-        <span className="absolute right-0 top-0 h-9 w-9 rounded-full bg-[radial-gradient(circle,#642d90_0%,transparent_70%)] opacity-80" />
+    <section className="couponList_wrapper mt-4">
+      <label className="coupon-title relative mb-3 block pr-12 text-[1.2rem] font-bold leading-8 text-neutral-800">
         لیست کوپن ها
-      </h2>
-      <div className="couponContainer flex gap-4 overflow-x-auto pb-4 lg:grid lg:grid-cols-3 lg:overflow-visible">
+      </label>
+      <div className="couponContainer mx-auto flex w-[90%] max-w-[1360px] flex-wrap justify-start">
         {coupons.map((c, i) => (
           <article
             key={c.id}
-            className="relative min-w-[260px] overflow-hidden rounded-2xl px-6 py-5 text-white lg:min-w-0"
-            style={{ background: i % 2 === 0 ? "#62be4b" : "#642d90" }}
+            className={`coupon-ticket relative mb-5 ml-5 w-[31.3%] min-w-[220px] overflow-hidden py-6 pl-9 pr-[92px] max-md:ml-0 max-md:w-full ${
+              i % 2 === 1 ? "is-purple" : "is-green"
+            }`}
           >
-            <i className="circle right pointer-events-none absolute -top-5 right-[16%] h-10 w-10 rounded-full bg-white" />
-            <i className="circle left pointer-events-none absolute -bottom-5 right-[16%] h-10 w-10 rounded-full bg-white" />
-            <span className="title block text-sm font-bold">{c.title}</span>
-            <span className="mt-2 block text-xs leading-6 text-white/90">{c.description}</span>
+            <i className="circle right pointer-events-none absolute -top-[27px] right-[16%] h-10 w-10 rounded-full bg-white" />
+            <i className="circle left pointer-events-none absolute -bottom-[27px] right-[16%] h-10 w-10 rounded-full bg-white" />
+            <span className="coupon-icon" aria-hidden />
+            <span className="title relative z-[1] mb-1.5 block text-right text-base font-bold text-white">
+              {c.title}
+            </span>
+            <span className="relative z-[1] block max-h-[42px] overflow-hidden whitespace-pre-line text-right text-sm leading-5 text-white/90">
+              {c.description}
+            </span>
           </article>
         ))}
       </div>
