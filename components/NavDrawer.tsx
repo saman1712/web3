@@ -6,7 +6,7 @@ import { navItems } from "./Header";
 import { useShop } from "@/lib/store";
 
 export function NavDrawer() {
-  const { menuOpen, setMenuOpen, setAuthOpen, setSearchOpen } = useShop();
+  const { menuOpen, setMenuOpen, setAuthOpen, setSearchOpen, user, setUser } = useShop();
 
   return (
     <AnimatePresence>
@@ -43,16 +43,38 @@ export function NavDrawer() {
                   {item.label}
                 </Link>
               ))}
-              <button
-                type="button"
-                onClick={() => {
-                  setMenuOpen(false);
-                  setAuthOpen(true);
-                }}
-                className="block w-full px-6 py-3.5 text-right text-sm text-brand-purple"
-              >
-                ورود / عضویت
-              </button>
+              {user ? (
+                <>
+                  <Link
+                    href="/profile"
+                    onClick={() => setMenuOpen(false)}
+                    className="block border-b border-purple-50 px-6 py-3.5 text-sm text-brand-purple"
+                  >
+                    پروفایل کاربری
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setUser(null);
+                      setMenuOpen(false);
+                    }}
+                    className="block w-full px-6 py-3.5 text-right text-sm text-[#b81b25]"
+                  >
+                    خروج از سیستم
+                  </button>
+                </>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMenuOpen(false);
+                    setAuthOpen(true);
+                  }}
+                  className="block w-full px-6 py-3.5 text-right text-sm text-brand-purple"
+                >
+                  ورود / عضویت
+                </button>
+              )}
               <button
                 type="button"
                 onClick={() => {

@@ -40,6 +40,17 @@ export interface Address {
   branchName?: string;
 }
 
+export interface User {
+  name: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  mobile: string;
+  username: string;
+  birthDate: string;
+  gender: "" | "male" | "female";
+}
+
 export interface Coupon {
   id: number;
   title: string;

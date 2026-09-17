@@ -3,6 +3,7 @@
 import { FormEvent, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useShop } from "@/lib/store";
+import { buildUser } from "@/lib/user";
 
 export function AuthModal() {
   const { authOpen, setAuthOpen, setUser } = useShop();
@@ -25,7 +26,13 @@ export function AuthModal() {
     const data = await res.json();
     setMessage(data.message);
     if (res.ok) {
-      setUser({ name: name || "کاربر عزیز", email: data.user.email });
+      setUser(
+        buildUser({
+          name: name || "کاربر عزیز",
+          mobile,
+          email: data.user?.email,
+        }),
+      );
     }
   }
 
@@ -41,16 +48,18 @@ export function AuthModal() {
             onClick={() => setAuthOpen(false)}
           />
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 30 }}
-            className="fixed inset-x-4 top-[12%] z-[90] mx-auto w-full max-w-[420px] overflow-hidden rounded-[28px] bg-white shadow-2xl"
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.96 }}
+            className="pointer-events-none fixed inset-0 z-[90] flex items-center justify-center px-4"
           >
-            <div className="relative bg-brand-purple px-6 py-5 text-white">
+            <div className="pointer-events-auto w-full max-w-[400px] overflow-hidden rounded-[28px] bg-white shadow-2xl">
+            <div className="relative bg-brand-purple px-12 py-5 text-center text-white">
               <button
                 type="button"
                 onClick={() => setAuthOpen(false)}
-                className="absolute left-4 top-4 text-2xl leading-none"
+                className="absolute top-1/2 left-4 -translate-y-1/2 text-2xl leading-none"
+                aria-label="بستن"
               >
                 ×
               </button>
@@ -75,31 +84,32 @@ export function AuthModal() {
               </button>
             </div>
 
-            <form onSubmit={onSubmit} className="space-y-3 p-6">
+            <form onSubmit={onSubmit} className="space-y-3 p-6 text-center">
               {mode === "register" && (
                 <input
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="نام و نام خانوادگی"
-                  className="h-12 w-full rounded-full border border-neutral-200 px-4 text-sm outline-none focus:border-brand-purple"
+                  className="h-12 w-full rounded-full border border-neutral-200 px-4 text-center text-sm outline-none focus:border-brand-purple"
                 />
               )}
               <input
                 required
                 value={mobile}
                 onChange={(e) => setMobile(e.target.value)}
-                placeholder="شماره موبایل"
+                placeholder="شماره موبایل (091...)"
                 inputMode="tel"
-                className="h-12 w-full rounded-full border border-neutral-200 px-4 text-sm outline-none focus:border-brand-purple"
+                className="h-12 w-full rounded-full border border-neutral-200 px-4 text-center text-sm outline-none focus:border-brand-purple"
               />
               <button
                 type="submit"
                 className="h-12 w-full rounded-full bg-brand-green font-semibold text-white hover:bg-brand-green-dark"
               >
-                {mode === "login" ? "ورود" : "عضویت"}
+                {mode === "login" ? "ورود به سایت" : "عضویت"}
               </button>
               {message && <p className="text-center text-xs text-brand-purple">{message}</p>}
             </form>
+            </div>
           </motion.div>
         </>
       )}

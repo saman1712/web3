@@ -55,15 +55,22 @@ export function Header() {
           {profileOpen && user && (
             <div className="absolute top-[48px] left-0 z-50 min-w-[180px] rounded-2xl bg-white py-2 text-right shadow-lg" dir="rtl">
               <p className="px-4 py-2 text-sm font-semibold text-brand-purple">{user.name}</p>
+              <Link
+                href="/profile"
+                onClick={() => setProfileOpen(false)}
+                className="block px-4 py-2 text-sm text-neutral-700 hover:bg-purple-50"
+              >
+                پروفایل کاربری
+              </Link>
               <button
                 type="button"
                 onClick={() => {
                   setUser(null);
                   setProfileOpen(false);
                 }}
-                className="block w-full px-4 py-2 text-sm text-neutral-600 hover:bg-purple-50"
+                className="block w-full px-4 py-2 text-sm text-[#b81b25] hover:bg-purple-50"
               >
-                خروج
+                خروج از سیستم
               </button>
             </div>
           )}

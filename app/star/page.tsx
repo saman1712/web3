@@ -17,7 +17,7 @@ export default function StarPage() {
     });
     const data = await res.json();
     setMessage(data.message);
-    if (res.ok) setUser({ name: "عضو ویژن استار", email: data.user?.email || mobile });
+    if (res.ok) setUser({ name: "عضو ویژن استار", email: data.user?.email || mobile, mobile });
   }
 
   return (

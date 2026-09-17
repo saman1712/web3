@@ -269,6 +269,48 @@ input[type="number"]::-webkit-inner-spin-button {
   transform: rotate(-136deg);
 }
 
+.profile-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 150px;
+  height: 44px;
+  padding: 12px 22px;
+  border: 2px solid #a3a3a3;
+  border-radius: 12px;
+  background: transparent;
+  color: #642d90;
+  font-size: 14px;
+  transition: 0.2s ease-out;
+}
+
+.profile-btn:hover {
+  background: color-mix(in srgb, #642d90 10%, transparent);
+}
+
+.profile-btn-fill {
+  border-color: transparent;
+  background: #642d90;
+  color: #fff;
+}
+
+.profile-btn-fill:hover {
+  opacity: 0.85;
+  background: #642d90;
+  color: #fff;
+}
+
+.profile-btn-logout {
+  border: none;
+  min-width: auto;
+  color: #b81b25;
+  background: transparent;
+}
+
+.profile-btn-logout:hover {
+  background: #fff5f5;
+}
+
 body {
   padding-bottom: 0;
 }

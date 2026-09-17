@@ -2,12 +2,8 @@
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { Address, CartItem, Product } from "./types";
-
-interface User {
-  name: string;
-  email: string;
-}
+import type { Address, CartItem, Product, User } from "./types";
+import { buildUser, fullName } from "./user";
 
 interface StoreState {
   items: CartItem[];
@@ -24,7 +20,8 @@ interface StoreState {
   setQty: (id: number, qty: number) => void;
   clearCart: () => void;
   setAddress: (address: Address) => void;
-  setUser: (user: User | null) => void;
+  setUser: (user: Partial<User> | null) => void;
+  updateUser: (patch: Partial<User>) => void;
   setCartOpen: (open: boolean) => void;
   setAuthOpen: (open: boolean) => void;
   setAddressOpen: (open: boolean) => void;
@@ -71,7 +68,18 @@ export const useShop = create<StoreState>()(
         }),
       clearCart: () => set({ items: [] }),
       setAddress: (address) => set({ address, addressOpen: false }),
-      setUser: (user) => set({ user, authOpen: false }),
+      setUser: (user) => set({ user: user ? buildUser(user) : null, authOpen: false }),
+      updateUser: (patch) => {
+        const current = get().user;
+        if (!current) return;
+        const next = { ...current, ...patch };
+        set({
+          user: buildUser({
+            ...next,
+            name: fullName(next.firstName, next.lastName),
+          }),
+        });
+      },
       setCartOpen: (cartOpen) => set({ cartOpen }),
       setAuthOpen: (authOpen) => set({ authOpen }),
       setAddressOpen: (addressOpen) => set({ addressOpen }),
@@ -86,6 +94,14 @@ export const useShop = create<StoreState>()(
         address: s.address,
         user: s.user,
       }),
+      merge: (persisted, current) => {
+        const p = (persisted || {}) as Partial<StoreState>;
+        return {
+          ...current,
+          ...p,
+          user: p.user ? buildUser(p.user) : null,
+        };
+      },
     },
   ),
 );
