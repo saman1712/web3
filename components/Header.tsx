@@ -25,15 +25,18 @@ export function Header() {
 
   return (
     <header className="fixed top-0 right-0 left-0 z-50 rounded-b-[32px] bg-white text-neutral-900 shadow-header">
-      <div dir="ltr" className="relative mx-auto flex h-[76px] max-w-[1400px] items-center px-4 lg:px-8">
-        <div className="relative z-10 flex items-center gap-1">
+      <div
+        dir="ltr"
+        className="mx-auto grid h-[76px] max-w-[1400px] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-1 px-3 sm:gap-2 sm:px-4 lg:px-8"
+      >
+        <div className="relative z-10 flex min-w-0 items-center justify-self-start">
           <button
             type="button"
             onClick={() => {
               if (user) setProfileOpen((v) => !v);
               else setAuthOpen(true);
             }}
-            className="inline-flex items-center gap-1.5 px-1 py-1 text-[14px] text-brand-purple"
+            className="inline-flex max-w-full items-center gap-1 px-0.5 py-1 text-[13px] text-brand-purple sm:gap-1.5 sm:text-[14px]"
           >
             <UserIcon />
             {!user && (
@@ -47,7 +50,7 @@ export function Header() {
                 عضویت
               </span>
             )}
-            <span className="font-medium">{mounted && user ? user.name : "ورود"}</span>
+            <span className="truncate font-medium">{mounted && user ? user.name : "ورود"}</span>
           </button>
           {profileOpen && user && (
             <div className="absolute top-[48px] left-0 z-50 min-w-[180px] rounded-2xl bg-white py-2 text-right shadow-lg" dir="rtl">
@@ -66,19 +69,15 @@ export function Header() {
           )}
         </div>
 
-        <Link
-          href="/"
-          aria-label="ویژن"
-          className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
-        >
+        <Link href="/" aria-label="ویژن" className="z-10 shrink-0 justify-self-center px-1">
           <Logo />
         </Link>
 
-        <div className="relative z-10 ml-auto flex items-center gap-2">
+        <div className="relative z-10 flex min-w-0 items-center justify-self-end gap-0.5 sm:gap-2">
           <button
             type="button"
             onClick={() => setCartOpen(true)}
-            className="relative inline-flex h-11 w-11 items-center justify-center rounded-full text-brand-purple"
+            className="relative inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-brand-purple sm:h-11 sm:w-11"
             aria-label="سبد خرید"
           >
             <CartIcon />
@@ -88,7 +87,7 @@ export function Header() {
           </button>
           <Link
             href="/online"
-            className="rounded-full bg-brand-purple px-4 py-2 text-[13px] font-semibold text-white"
+            className="hidden shrink-0 rounded-full bg-brand-purple px-4 py-2 text-[13px] font-semibold whitespace-nowrap text-white sm:inline-flex"
           >
             سفارش اینترنتی
           </Link>
@@ -96,7 +95,7 @@ export function Header() {
             type="button"
             aria-label="فهرست"
             onClick={() => setMenuOpen(true)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-brand-purple"
+            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-brand-purple sm:h-11 sm:w-11"
           >
             <MenuIcon />
           </button>
@@ -109,7 +108,7 @@ export function Header() {
 
 function UserIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
+    <svg viewBox="0 0 24 24" className="h-6 w-6 shrink-0 sm:h-7 sm:w-7" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
       <path d="M16.8 6.8a4.4 4.4 0 1 1-8.8 0 4.4 4.4 0 0 1 8.8 0Z" />
       <path d="M4.8 20.7c.4-3.6 3.6-6.3 7.6-6.3s7.2 2.7 7.6 6.3" strokeLinecap="round" />
     </svg>

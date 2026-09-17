@@ -10,13 +10,13 @@ export function Logo({
   return (
     <span className={`inline-flex flex-col items-center leading-none ${className}`}>
       <span
-        className={`text-[26px] font-extrabold tracking-tight md:text-[30px] ${
+        className={`text-[20px] font-extrabold tracking-tight sm:text-[26px] md:text-[30px] ${
           onDark ? "text-white" : "text-brand-purple"
         }`}
       >
         ویژن
       </span>
-      <span className={`mt-0.5 text-[10px] font-medium ${onDark ? "text-green-200" : "text-brand-green"}`}>
+      <span className={`mt-0.5 text-[8px] font-medium sm:text-[10px] ${onDark ? "text-green-200" : "text-brand-green"}`}>
         VISION
       </span>
     </span>

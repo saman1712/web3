@@ -42,27 +42,118 @@ input[type="number"]::-webkit-inner-spin-button {
   background: #f3eef8;
 }
 
+.category-rail {
+  scrollbar-width: none;
+}
+
 .category-rail::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
 
+.cat-stamp {
+  position: relative;
+  display: flex;
+  flex: 1 1 0%;
+  width: 120px;
+  min-width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #fff;
+  padding: 0;
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: center;
+}
+
 .cat-stamp::before {
   content: "";
   position: absolute;
-  top: 0;
   left: 0;
-  width: 120px;
-  height: 120px;
+  right: 0;
+  top: 50%;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  transform: translateY(-50%);
   background: url("https://sib360.com/Content/base/dynamic/shopping4492/img/107920.jpg")
-    center / 120px 120px no-repeat;
+    center / contain no-repeat;
   opacity: 0.1;
   pointer-events: none;
+  transition: 0.5s;
 }
 
 .cat-stamp:hover::before,
 .cat-stamp.is-selected::before {
   opacity: 1;
+}
+
+.cat-stamp .gpImg_wrapper {
+  display: block;
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  width: 40px;
+  height: 35px;
+  margin: 0 auto;
+}
+
+.cat-stamp .gpImg_wrapper img {
+  width: 40px;
+  height: 35px;
+  object-fit: cover;
+}
+
+.cat-stamp .gpImg_wrapper svg {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.cat-stamp .gpImg_wrapper svg path {
+  fill: rgb(180, 90, 254);
+}
+
+.cat-stamp b {
+  position: relative;
+  z-index: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  align-self: center;
+  width: 100%;
+  margin: 42px auto 0;
+  padding: 0 4px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2em;
+  text-align: center;
+}
+
+.cat-stamp b.two-line-text {
+  font-size: 13px;
+  margin-top: 42px;
+}
+
+@media only screen and (max-width: 769px) {
+  .cat-stamp {
+    width: 96px;
+    min-width: 96px;
+    height: 96px;
+  }
+
+  .cat-stamp b,
+  .cat-stamp b.two-line-text {
+    font-size: 12px;
+  }
 }
 
 .coupon-title::before {
